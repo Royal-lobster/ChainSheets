@@ -23,6 +23,7 @@ cd ChainSheets
 yarn install
 ```
 
+
 ## 📚 Usage
 
 ChainSheets offers a unique ecosystem where research and academic publishing are reimagined through Decentralized Autonomous Organizations (DAOs), each focusing on a specific research topic. Users can propose their research articles or papers to these DAOs, akin to submitting to specialized journals. 
@@ -46,3 +47,14 @@ ChainSheets offers a unique ecosystem where research and academic publishing are
 This structure fosters a self-sustaining cycle of quality research submissions, peer review, and rewarding contributions to the field, all within the ChainSheets platform.
 
 
+## 🤝 Contributing
+Contributions are what make the open-source community thrive. We welcome any contributions to ChainSheets.
+
+
+## 📝 License
+
+
+## 📩 Contact
+- Yadheedhya: [Twitter @yadheedhya](https://twitter.com/yadheedhya)
+- Srujan: [Twitter @urban_lobster](https://twitter.com/urban_lobster)
+- Sidharth: [Twitter @coding_sid](https://twitter.com/coding_sid)
