@@ -16,7 +16,7 @@ const Navbar = () => {
       </div>
       <div className="flex gap-8">
         <nav className="flex gap-4 items-center">
-          <Link href="/path-for-create-new-journal">
+          <Link href="/#create-journal">
             <span className="cursor-pointer text-neutral-500 flex gap-2">
               <IconCirclePlus />
               <span>Create new Journal</span>
