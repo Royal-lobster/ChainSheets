@@ -35,7 +35,7 @@ ChainSheets offers a unique ecosystem where research and academic publishing are
 - **Published Papers**: Papers that have been reviewed and accepted by the DAO members.
 - **Paper Holders**: Users who mint NFTs of a DAO's papers, granting them access to read these published works.
 
-*NOTE**: The term "$ExpertSHEETS" serves as a generic placeholder. Each DAO within ChainSheets has its own distinct token name, reflecting its specific research focus and community.
+**NOTE**: The term "$ExpertSHEETS" serves as a generic placeholder. Each DAO within ChainSheets has its own distinct token name, reflecting its specific research focus and community. And these tokens are Soulbound tokens
 
 ### Token Dynamics
 - **$ExpertSHEETS**: These are topic-specific tokens, unique to each DAO (e.g., $AI SHEETS for an AI-focused DAO and $BC SHEETS for a Blockchain focused DAO). Members of a DAO hold these tokens, symbolizing their expertise and role within that specific research field. Importantly, $ExpertSHEETS are **NON-TRANSFERABLE**, ensuring dedicated membership and expertise within each DAO.
