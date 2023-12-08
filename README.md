@@ -17,8 +17,10 @@ ChainSheets is a cutting-edge decentralized application (DApp) transforming acad
 ```bash
 # Clone the repository
 git clone https://github.com/Royal-lobster/ChainSheets
+
 # Navigate to the repository
 cd ChainSheets
+
 # Install dependencies
 yarn install
 ```
@@ -52,6 +54,8 @@ Contributions are what make the open-source community thrive. We welcome any con
 
 
 ## 📝 License
+
+ChainSheets is open source software licensed under the MIT License.
 
 
 ## 📩 Contact
