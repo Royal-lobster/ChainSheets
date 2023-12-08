@@ -43,7 +43,7 @@ ChainSheets offers a unique ecosystem where research and academic publishing are
 
 
 ### Interactions and Rewards
-- **Accessing Papers**: Users spend $SHEETS to mint NFTs, gaining access to specific DAO-published papers. This action increases the DAO's value, indirectly benefiting its members.
+- **Accessing Papers**: Users spend $SHEETS to mint NFTs, gaining access to specific published paper of a DAO the user wants. This action increases the DAO's value, indirectly benefiting its members.
 - **Member Privileges**: Members with $ExpertSHEETS can access all papers published within their specific DAO.
 - **Proposal Acceptance and Rewards**: When a user's research proposal is accepted by a DAO, they are rewarded with the corresponding DAO's $ExpertSHEETS. Accumulating these tokens over time can elevate a user to a DAO member, enabling them to share in the profits generated from NFT mints.
 
