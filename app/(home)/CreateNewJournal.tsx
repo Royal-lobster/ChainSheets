@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import FieldWrapper from "./FieldWrapper";
 import JournalAvatarUpload from "./JournalAvatarUpload";
+import Section from "../(layout)/Section";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
 const DEFAULT_MINIMUM_EXPERT_TOKENS = 50;
@@ -45,62 +46,78 @@ const CreateNewJournal = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="p-4 w-full max-w-lg mx-auto"
-    >
-      <FieldWrapper
-        label="Journal Avatar"
-        name="journalAvatar"
-        register={register}
-        errors={errors}
-      >
-        <JournalAvatarUpload name="journalAvatar" register={register} />
-      </FieldWrapper>
-      <FieldWrapper
-        label="Journal Name"
-        name="journalName"
-        register={register}
-        errors={errors}
-        placeholder="Name of Journal"
-      />
+    <div className="xl:-mx-20 px-20 py-10 bg-black text-white rounded-lg">
+      <Section title="Establish your own decentralized journal">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+          <div className="flex flex-col md:flex-row justify-between gap-8">
+            <FieldWrapper
+              label="Journal Avatar"
+              name="journalAvatar"
+              register={register}
+              errors={errors}
+            >
+              <JournalAvatarUpload name="journalAvatar" register={register} />
+            </FieldWrapper>
+            <div className="flex-grow">
+              <FieldWrapper
+                label="Journal Name"
+                name="journalName"
+                register={register}
+                errors={errors}
+                placeholder="Name of Journal"
+              />
 
-      <FieldWrapper
-        label="Description"
-        name="description"
-        register={register}
-        errors={errors}
-        placeholder="Enter about your journal"
-      >
-        <textarea
-          {...register("description")}
-          placeholder="Enter about your journal"
-          className="border w-full p-2 rounded"
-        />
-      </FieldWrapper>
+              <FieldWrapper
+                label="Description"
+                name="description"
+                register={register}
+                errors={errors}
+                placeholder="Enter about your journal"
+              >
+                <textarea
+                  {...register("description")}
+                  placeholder="Enter about your journal"
+                  className="border w-full p-2 rounded"
+                  rows={4}
+                />
+              </FieldWrapper>
+            </div>
 
-      <FieldWrapper
-        label="Minimum Expert Tokens"
-        name="minimumExpertTokens"
-        register={register}
-        errors={errors}
-        type="number"
-      />
+            <div className="flex-grow">
+              <FieldWrapper
+                label="Minimum Expert Tokens"
+                name="minimumExpertTokens"
+                register={register}
+                errors={errors}
+                type="number"
+              />
 
-      <FieldWrapper
-        label="Participation Threshold"
-        name="participationThreshold"
-        register={register}
-        errors={errors}
-        type="range"
-      />
-      <button
-        type="submit"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Launch
-      </button>
-    </form>
+              <FieldWrapper
+                label="Participation Threshold"
+                name="participationThreshold"
+                register={register}
+                errors={errors}
+                type="range"
+              />
+
+              <FieldWrapper
+                label="Minimum Approval Percentage"
+                name="minimumApprovalPercentage"
+                register={register}
+                errors={errors}
+                type="range"
+              />
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="bg-transparent border border-neutral-700 mt-4 mx-auto block text-white font-bold py-2 px-4 rounded"
+          >
+            🚀 Launch
+          </button>
+        </form>
+      </Section>
+    </div>
   );
 };
 

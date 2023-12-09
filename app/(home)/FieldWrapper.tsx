@@ -21,7 +21,7 @@ const FieldWrapper = ({
 }: FieldWrapperProps) => {
   return (
     <div className="mb-2">
-      <label className="block mb-1 text-sm font-semibold text-gray-700">
+      <label className="block mb-2 text-sm font-semibold text-neutral-200">
         {label}:
       </label>
       {children ? (
@@ -31,7 +31,7 @@ const FieldWrapper = ({
           {...register(name)}
           placeholder={placeholder}
           type={type}
-          className="border w-full p-2 rounded"
+          className="block border w-full p-2 rounded"
         />
       )}
       <p className="text-xs text-red-500 mt-1">

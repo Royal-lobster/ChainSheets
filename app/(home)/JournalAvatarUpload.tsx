@@ -2,11 +2,14 @@ import { IconPhotoPlus } from "@tabler/icons-react";
 import { UseFormRegister } from "react-hook-form";
 import React, { useState } from "react";
 import Image from "next/image";
+import { cn } from "../lib/cn";
 
 type JournalAvatarUploadProps = {
   register: UseFormRegister<any>;
   name: string;
 };
+
+const IMAGE_DIMENSIONS = 160;
 
 const JournalAvatarUpload = ({ register, name }: JournalAvatarUploadProps) => {
   const [image, setImage] = useState<string | null>(null);
@@ -23,8 +26,24 @@ const JournalAvatarUpload = ({ register, name }: JournalAvatarUploadProps) => {
   };
 
   return (
-    <div className="grid place-content-center w-24 h-24 rounded overflow-hidden">
-      <label htmlFor="avatar-upload">
+    <div
+      className={cn(
+        "grid place-content-center rounded overflow-hidden",
+        image ? "bg-transparent" : "bg-neutral-900"
+      )}
+      style={{
+        width: IMAGE_DIMENSIONS,
+        height: IMAGE_DIMENSIONS,
+      }}
+    >
+      <label
+        htmlFor="avatar-upload"
+        style={{
+          width: IMAGE_DIMENSIONS,
+          height: IMAGE_DIMENSIONS,
+        }}
+        className="grid place-content-center"
+      >
         {!image && (
           <IconPhotoPlus className="text-neutral-200 cursor-pointer" />
         )}
@@ -32,9 +51,10 @@ const JournalAvatarUpload = ({ register, name }: JournalAvatarUploadProps) => {
           <Image
             src={image}
             alt="Avatar"
-            width={96}
-            height={96}
-            className="w-24 h-24 object-cover"
+            width={IMAGE_DIMENSIONS}
+            height={IMAGE_DIMENSIONS}
+            className="object-cover"
+            style={{ width: IMAGE_DIMENSIONS, height: IMAGE_DIMENSIONS }}
           />
         )}
       </label>
