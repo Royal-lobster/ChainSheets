@@ -6,27 +6,23 @@ import { button } from "../lib/variants";
 
 const Navbar = () => {
   return (
-    <header className="flex justify-center sm:justify-between gap-4 items-center py-4 flex-wrap">
+    <header className="flex justify-center sm:justify-between gap-4 items-center py-4">
       <div className="flex gap-2 items-center">
-        <Link href="/">
-          <span className="cursor-pointer flex gap-2 items-center">
-            <ChainSheetsIcon className="w-8 h-8" />
-            <span className="text-2xl font-bold">ChainSheet</span>
-          </span>
+        <Link href="/" className="cursor-pointer flex gap-2 items-center">
+          <ChainSheetsIcon className="w-8 h-8" />
+          <span className="text-xl sm:text-2xl font-bold">ChainSheet</span>
         </Link>
       </div>
-      <div className="flex gap-8">
-        <nav className="flex gap-4 items-center">
-          <Link href="/#create-journal" className={button({ type: "link" })}>
-            <IconCirclePlus />
-            <span>Create new Journal</span>
-          </Link>
-        </nav>
+      <nav className="flex sm:gap-4 items-center">
+        <Link href="/#create-journal" className={button({ type: "link" })}>
+          <IconCirclePlus />
+          <span className="hidden sm:inline">Create new Journal</span>
+        </Link>
         <button className={button()}>
           <IconWallet />
-          Connect Wallet
+          <span className="hidden sm:inline">Connect Wallet</span>
         </button>
-      </div>
+      </nav>
     </header>
   );
 };

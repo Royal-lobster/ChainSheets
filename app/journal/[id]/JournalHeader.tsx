@@ -49,7 +49,7 @@ const JournalHeader = ({
             {journalTitle}
           </div>
           <p className="text-neutral-500 mt-1">{description}</p>
-          <div className="flex mt-4 space-x-4 flex-wrap">
+          <div className="flex justify-center mt-4 gap-4 flex-wrap">
             <button className={button()}>
               <IconUsers />
               <span>Become Member</span>

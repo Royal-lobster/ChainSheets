@@ -12,7 +12,7 @@ export const chip = tv({
 });
 
 export const button = tv({
-  base: "flex justify-center items-center gap-2 font-semibold rounded-lg",
+  base: "flex self-center justify-center items-center gap-2 font-semibold rounded-lg",
   variants: {
     type: {
       filled: "bg-neutral-900 text-white hover:bg-neutral-800 hover:shadow-md",
