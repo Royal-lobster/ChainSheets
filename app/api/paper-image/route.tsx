@@ -6,8 +6,7 @@ import {
   getComplementaryColor,
   getRandomPaleColor,
 } from "@/app/assets/lib/helpers/randomColors";
-import { uploadToLighthouseStorage } from "@/app/assets/lib/integrations/lighthouse.storage";
-
+import { uploadImageToLighthouseStorage } from "@/app/assets/lib/integrations/lighthouse.storage";
 export const runtime = "edge";
 
 export async function GET(req: NextRequest) {
@@ -48,7 +47,7 @@ export async function GET(req: NextRequest) {
     }
   );
 
-  const ipfs = await uploadToLighthouseStorage(await generatedImage.blob());
+  const ipfs = await uploadImageToLighthouseStorage(await generatedImage.blob());
 
   return NextResponse.json({ ipfs });
 }
