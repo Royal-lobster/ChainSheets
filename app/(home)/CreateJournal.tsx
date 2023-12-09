@@ -51,7 +51,7 @@ const CreateJournal = () => {
   return (
     <div
       id="create-journal"
-      className="-mx-4 sm:mx-0 xl:-mx-16 px-8 xl:px-24 py-24 bg-neutral-900 text-white sm:rounded-lg"
+      className="-mx-4 sm:mx-0 xl:-mx-16 px-8 xl:px-24 py-24 bg-neutral-900 text-white sm:rounded-lg scroll-mt-14"
     >
       <Section
         title="Establish your own decentralized journal"
