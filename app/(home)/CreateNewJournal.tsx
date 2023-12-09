@@ -49,13 +49,13 @@ const CreateNewJournal = () => {
   return (
     <div
       id="create-journal"
-      className="-mx-4 sm:mx-0 xl:-mx-24 px-8 xl:px-24 py-24 bg-neutral-900 text-white sm:rounded-lg"
+      className="-mx-4 sm:mx-0 xl:-mx-10 px-8 xl:px-24 py-24 bg-neutral-900 text-white sm:rounded-lg"
     >
       <Section
         title="Establish your own decentralized journal"
         icon={<IconBuildingArch size={32} />}
       >
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full mt-5">
           <div className="flex flex-col md:flex-row justify-between gap-8">
             <FieldWrapper
               label="Journal Avatar"
