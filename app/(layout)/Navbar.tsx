@@ -1,7 +1,8 @@
 import React from "react";
 import ChainSheetsIcon from "../icons/ChainSheetsIcon";
-import { IconCirclePlus } from "@tabler/icons-react";
+import { IconCirclePlus, IconWallet } from "@tabler/icons-react";
 import Link from "next/link";
+import { button } from "../lib/variants";
 
 const Navbar = () => {
   return (
@@ -16,14 +17,13 @@ const Navbar = () => {
       </div>
       <div className="flex gap-8">
         <nav className="flex gap-4 items-center">
-          <Link href="/#create-journal">
-            <span className="cursor-pointer text-neutral-500 flex gap-2">
-              <IconCirclePlus />
-              <span>Create new Journal</span>
-            </span>
+          <Link href="/#create-journal" className={button({ type: "link" })}>
+            <IconCirclePlus />
+            <span>Create new Journal</span>
           </Link>
         </nav>
-        <button className="bg-neutral-900 text-white px-4 py-2 rounded-lg">
+        <button className={button()}>
+          <IconWallet />
           Connect Wallet
         </button>
       </div>

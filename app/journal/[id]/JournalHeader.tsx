@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import { button } from "@/app/lib/variants";
+import { IconNote, IconUsers } from "@tabler/icons-react";
 
 interface JournalHeaderProps {
   journalImage?: string;
@@ -20,8 +22,6 @@ const JournalHeader = ({
   journalTitle = "AI and Machine Learning",
   topic = "Artificial Intelligence",
   description = "All papers on AI and Machine learning Research",
-  memberButtonText = "Become Member",
-  paperButtonText = "Submit Paper",
   memberCount = 1000,
   paperCount = 120,
   holderCount = 1400,
@@ -50,11 +50,13 @@ const JournalHeader = ({
           </div>
           <p className="text-neutral-500 mt-1">{description}</p>
           <div className="flex mt-4 space-x-4 flex-wrap">
-            <button className="bg-neutral-900 text-white font-bold py-2 px-4 rounded">
-              {memberButtonText}
+            <button className={button()}>
+              <IconUsers />
+              <span>Become Member</span>
             </button>
-            <button className="bg-transparent font-semibold py-2 px-4 border border-neutral-900 rounded">
-              {paperButtonText}
+            <button className={button({ type: "outline" })}>
+              <IconNote />
+              <span>Submit Paper</span>
             </button>
           </div>
         </div>

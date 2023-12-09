@@ -8,6 +8,7 @@ import FieldWrapper from "./FieldWrapper";
 import JournalAvatarUpload from "./JournalAvatarUpload";
 import Section from "../(layout)/Section";
 import { IconRocket } from "@tabler/icons-react";
+import { button } from "../lib/variants";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
 const DEFAULT_MINIMUM_EXPERT_TOKENS = 50;
@@ -115,7 +116,10 @@ const CreateNewJournal = () => {
           </div>
           <button
             type="submit"
-            className="bg-transparent border border-neutral-700 mt-4 mx-auto flex gap-2 text-white font-bold py-2 px-20 rounded"
+            className={button({
+              type: "lightOutline",
+              class: "px-10 mx-auto",
+            })}
           >
             <IconRocket /> <span>Launch</span>
           </button>

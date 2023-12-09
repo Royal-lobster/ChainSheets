@@ -1,3 +1,5 @@
+import { button } from "@/app/lib/variants";
+import { IconFileCheck } from "@tabler/icons-react";
 import React from "react";
 
 interface UnderReviewPaperCardProps {
@@ -29,7 +31,8 @@ const UnderReviewPaperCard = ({
           <p>Created on {createdOn}</p>
           <p>Last Review {lastReview}</p>
         </div>
-        <button className="bg-neutral-900 text-white py-2 px-4 rounded mt-4 md:mt-0">
+        <button className={button()}>
+          <IconFileCheck />
           Review
         </button>
       </div>
