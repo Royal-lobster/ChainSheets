@@ -16,8 +16,7 @@ export async function GET(req: NextRequest) {
   const sessionId = 1;
   const callbackURL = "/api/callback";
   const audience =
-    // "did:polygonid:polygon:mumbai:2qDyy1kEo2AYcP3RT4XGea7BtxsY285szg6yP9SPrs";
-    "did:polygonid:polygon:mumbai:2qEATqfECVbCBzq9EhJpPSiv1xtJRpbMBKDaNM68Ci";
+    "did:polygonid:polygon:mumbai:2qDyy1kEo2AYcP3RT4XGea7BtxsY285szg6yP9SPrs";
 
   const uri = `${hostUrl}${callbackURL}?sessionId=${sessionId}`;
 
