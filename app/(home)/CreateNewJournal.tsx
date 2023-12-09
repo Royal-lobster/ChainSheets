@@ -125,6 +125,7 @@ const CreateNewJournal = () => {
                 register={register}
                 errors={errors}
                 type="range"
+                defaultValue="50"
               />
 
               <FieldWrapper
@@ -133,6 +134,7 @@ const CreateNewJournal = () => {
                 register={register}
                 errors={errors}
                 type="range"
+                defaultValue="30"
               />
             </div>
           </div>

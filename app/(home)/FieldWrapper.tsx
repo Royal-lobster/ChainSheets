@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 
 type FieldWrapperProps = {
@@ -9,6 +9,7 @@ type FieldWrapperProps = {
   placeholder?: string;
   type?: string;
   children?: React.ReactNode;
+  defaultValue?: string; // Add a defaultValue prop for the range
 };
 
 const FieldWrapper = ({
@@ -19,28 +20,34 @@ const FieldWrapper = ({
   placeholder,
   type = "text",
   children,
+  defaultValue = "",
 }: FieldWrapperProps) => {
-  // State to hold the value of the range input
-  const [rangeValue, setRangeValue] = useState("");
+  const [rangeValue, setRangeValue] = useState(defaultValue);
 
-  // Function to handle range value change
   const handleRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRangeValue(event.target.value);
   };
 
+  useEffect(() => {
+    if (type === "range" && !rangeValue) {
+      setRangeValue("50");
+    }
+  }, [type, rangeValue]);
+
   return (
     <div className="my-4">
-      <label className="block text-lg mb-2 text-neutral-400">{label}:</label>
+      <div className="flex justify-between items-center mb-2">
+        <label className="block text-lg text-neutral-400">{label}:</label>
+        {type === "range" && <span className="text-lg">{rangeValue}%</span>}
+      </div>
       {type === "range" ? (
-        <div className="range-container">
-          <input
-            {...register(name)}
-            type={type}
-            className="block border w-full p-2 rounded text-black"
-            onChange={handleRangeChange}
-          />
-          <div className="range-value">{rangeValue}%</div>
-        </div>
+        <input
+          {...register(name)}
+          type={type}
+          className="block border w-full p-2 rounded text-black"
+          onChange={handleRangeChange}
+          value={rangeValue}
+        />
       ) : children || (
         <input
           {...register(name)}
