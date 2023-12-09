@@ -55,7 +55,7 @@ const CreateNewJournal = () => {
         register={register}
         errors={errors}
       >
-        <JournalAvatarUpload />
+        <JournalAvatarUpload name="journalAvatar" register={register} />
       </FieldWrapper>
       <FieldWrapper
         label="Journal Name"
@@ -71,7 +71,13 @@ const CreateNewJournal = () => {
         register={register}
         errors={errors}
         placeholder="Enter about your journal"
-      />
+      >
+        <textarea
+          {...register("description")}
+          placeholder="Enter about your journal"
+          className="border w-full p-2 rounded"
+        />
+      </FieldWrapper>
 
       <FieldWrapper
         label="Minimum Expert Tokens"
