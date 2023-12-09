@@ -4,15 +4,16 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { z } from "zod";
-import FieldWrapper from "./FieldWrapper";
+import FieldWrapper from "../components/FieldWrapper";
 import JournalAvatarUpload from "./JournalAvatarUpload";
 import Section from "../(layout)/Section";
 import { IconBuildingArch, IconRocket } from "@tabler/icons-react";
 import { button } from "../lib/variants";
+import { topics } from "@/data/topics";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
 const DEFAULT_MINIMUM_EXPERT_TOKENS = 50;
-const DEFAULT_MINIMUM_APPROVAL_PERCENTAGE = 500;
+const DEFAULT_MINIMUM_APPROVAL_PERCENTAGE = 30;
 
 const JournalMetadataSchema = z.object({
   journalName: z.string(),
@@ -49,29 +50,31 @@ const CreateNewJournal = () => {
   return (
     <div
       id="create-journal"
-      className="-mx-4 sm:mx-0 xl:-mx-24 px-8 xl:px-24 py-24 bg-neutral-900 text-white sm:rounded-lg"
+      className="-mx-4 sm:mx-0 xl:-mx-10 px-8 xl:px-24 py-24 bg-neutral-900 text-white sm:rounded-lg"
     >
       <Section
         title="Establish your own decentralized journal"
         icon={<IconBuildingArch size={32} />}
       >
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full mt-5">
           <div className="flex flex-col md:flex-row justify-between gap-8">
             <FieldWrapper
               label="Journal Avatar"
               name="journalAvatar"
               register={register}
               errors={errors}
+              isOnDark
             >
               <JournalAvatarUpload name="journalAvatar" register={register} />
             </FieldWrapper>
-            <div className="flex-grow">
+            <div className="flex-grow space-y-4">
               <FieldWrapper
                 label="Journal Name"
                 name="journalName"
                 register={register}
                 errors={errors}
                 placeholder="Name of Journal"
+                isOnDark
               />
 
               <FieldWrapper
@@ -80,11 +83,12 @@ const CreateNewJournal = () => {
                 register={register}
                 errors={errors}
                 placeholder="Enter about your journal"
+                isOnDark
               >
                 <textarea
                   {...register("description")}
                   placeholder="Enter about your journal"
-                  className="border w-full p-2 rounded"
+                  className="border w-full p-2 rounded text-black"
                 />
               </FieldWrapper>
 
@@ -94,26 +98,30 @@ const CreateNewJournal = () => {
                 register={register}
                 errors={errors}
                 placeholder="Enter topics"
+                isOnDark
               >
                 <select
                   {...register("topics")}
-                  className="border w-full p-2 rounded"
-                  placeholder="Select main topic for your journal"
+                  className="border w-full p-2 rounded text-black"
+                  placeholder="Select topics for your journal"
                 >
-                  <option value="topic1">Topic 1</option>
-                  <option value="topic2">Topic 2</option>
-                  <option value="topic3">Topic 3</option>
+                  {topics.map((topic) => (
+                    <option key={topic} value={topic}>
+                      {topic}
+                    </option>
+                  ))}
                 </select>
               </FieldWrapper>
             </div>
 
-            <div className="flex-grow">
+            <div className="flex-grow space-y-4">
               <FieldWrapper
                 label="Minimum Expert Tokens"
                 name="minimumExpertTokens"
                 register={register}
                 errors={errors}
                 type="number"
+                isOnDark
               />
 
               <FieldWrapper
@@ -122,6 +130,8 @@ const CreateNewJournal = () => {
                 register={register}
                 errors={errors}
                 type="range"
+                defaultValue="50"
+                isOnDark
               />
 
               <FieldWrapper
@@ -130,6 +140,8 @@ const CreateNewJournal = () => {
                 register={register}
                 errors={errors}
                 type="range"
+                defaultValue="30"
+                isOnDark
               />
             </div>
           </div>

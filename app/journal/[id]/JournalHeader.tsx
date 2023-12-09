@@ -1,7 +1,7 @@
-import React from "react";
-import Image from "next/image";
 import { button, chip } from "@/app/lib/variants";
-import { IconNote, IconUsers } from "@tabler/icons-react";
+import { IconUsers } from "@tabler/icons-react";
+import Image from "next/image";
+import SubmitPaper from "./SubmitPaper";
 
 interface JournalHeaderProps {
   journalImage?: string;
@@ -52,10 +52,7 @@ const JournalHeader = ({
               <IconUsers />
               <span>Become Member</span>
             </button>
-            <button className={button({ type: "outline" })}>
-              <IconNote />
-              <span>Submit Paper</span>
-            </button>
+            <SubmitPaper />
           </div>
         </div>
       </div>
