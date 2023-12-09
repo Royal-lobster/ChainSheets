@@ -29,7 +29,7 @@ const JournalAvatarUpload = ({ register, name }: JournalAvatarUploadProps) => {
     <div
       className={cn(
         "grid place-content-center rounded overflow-hidden",
-        image ? "bg-transparent" : "bg-neutral-900"
+        image ? "bg-transparent" : "bg-neutral-700"
       )}
       style={{
         width: IMAGE_DIMENSIONS,
