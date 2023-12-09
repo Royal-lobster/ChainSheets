@@ -1,11 +1,11 @@
 import React from "react";
-import ChainSheetsIcon from "./ChainSheetsIcon";
+import ChainSheetsIcon from "../icons/ChainSheetsIcon";
 import { IconCirclePlus } from "@tabler/icons-react";
 import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <header className="flex justify-center md:justify-between gap-4 items-center py-4 flex-wrap">
+    <header className="flex justify-center sm:justify-between gap-4 items-center py-4 flex-wrap">
       <div className="flex gap-2 items-center">
         <Link href="/">
           <span className="cursor-pointer flex gap-2 items-center">
