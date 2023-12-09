@@ -13,7 +13,6 @@ import { topics } from "@/app/assets/data/topics";
 import { createJournal } from "../assets/lib/functions/createJournal";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
-const DEFAULT_MINIMUM_EXPERT_TOKENS = 50;
 const DEFAULT_MINIMUM_APPROVAL_PERCENTAGE = 30;
 
 const journalSchema = z.object({
