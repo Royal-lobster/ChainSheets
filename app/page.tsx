@@ -1,3 +1,4 @@
+import CreateNewJournal from "./(home)/CreateNewJournal";
 import PopularJournals from "./(home)/PopularJournals";
 import PopularPapers from "./(home)/PopularPapers";
 
@@ -6,6 +7,7 @@ export default function Home() {
     <main className="flex flex-col gap-10">
       <PopularJournals />
       <PopularPapers />
+      <CreateNewJournal />
     </main>
   );
 }
