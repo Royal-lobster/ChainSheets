@@ -15,15 +15,15 @@ const JournalCard = ({
   members = 200,
 }: PopularJournalCardProps) => {
   return (
-    <div className="w-full flex flex-shrink-0 bg-white rounded-lg border border-neutral-200 shadow-md overflow-hidden">
+    <div className="w-full flex items-center flex-shrink-0 bg-white rounded-lg border border-neutral-200 shadow-md overflow-hidden">
       <Image
         src="https://source.unsplash.com/random/200x200"
         alt="Dummy Image"
-        className="w-24 h-24 m-2 rounded-md flex-shrink-0 overflow-hidden"
+        className="m-6 rounded-md flex-shrink-0 overflow-hidden"
         width={JOURNAL_IMAGE_SIZE}
         height={JOURNAL_IMAGE_SIZE}
       />
-      <div className="p-4">
+      <div className="p-6 pl-0">
         <h1 className="text-lg md:text-xl font-semibold text-neutral-900 line-clamp-1">
           {title}
         </h1>

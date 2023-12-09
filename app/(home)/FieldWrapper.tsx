@@ -20,10 +20,8 @@ const FieldWrapper = ({
   children,
 }: FieldWrapperProps) => {
   return (
-    <div className="mb-2">
-      <label className="block mb-2 text-sm font-semibold text-neutral-200">
-        {label}:
-      </label>
+    <div className="my-4">
+      <label className="block text-lg mb-2 text-neutral-400">{label}:</label>
       {children ? (
         children
       ) : (
