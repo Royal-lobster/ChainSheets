@@ -4,12 +4,6 @@ import path from "path";
 import { auth, resolver, protocol } from "@iden3/js-iden3-auth";
 import { requestMap } from "../sign-in/route";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 export async function POST(req: NextRequest) {
   // Get session ID from request
   //   const sessionId = req.query.sessionId;
@@ -20,11 +14,11 @@ export async function POST(req: NextRequest) {
   //   const tokenStr = raw.toString().trim();
 
   const raw = await req.text();
-  const tokenStr = raw.toString().trim();
+  const tokenStr = raw.trim();
 
-  const ethURL = "<MUMBAI_RPC_URL>";
+  const ethURL = "https://rpc.ankr.com/polygon_mumbai	";
   const contractAddress = "0x134B1BE34911E39A8397ec6289782989729807a4";
-  const keyDIR = "../keys";
+  const keyDIR = "/keys";
 
   const ethStateResolver = new resolver.EthStateResolver(
     ethURL,
@@ -37,12 +31,13 @@ export async function POST(req: NextRequest) {
 
   // fetch authRequest from sessionID
   const authRequest = requestMap.get(`${sessionId}`);
+  console.log("authreq", authRequest);
 
   // EXECUTE VERIFICATION
   const verifier = await auth.Verifier.newVerifier({
     stateResolver: resolvers,
-    circuitsDir: path.join(__dirname, "./circuits-dir"),
-    ipfsGatewayURL: "<gateway url>",
+    circuitsDir: keyDIR,
+    ipfsGatewayURL: "https://ipfs.io",
   });
 
   try {
