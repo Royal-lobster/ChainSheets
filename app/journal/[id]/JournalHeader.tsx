@@ -48,7 +48,7 @@ const JournalHeader = ({
           <div className="font-bold text-2xl md:text-3xl mt-2">
             {sectionTitle}
           </div>
-          <p className="text-gray-600 text-sm mt-1">{description}</p>
+          <p className="text-neutral-600 text-sm mt-1">{description}</p>
           <div className="flex mt-4 space-x-4 flex-wrap">
             <button className="bg-black text-white font-bold py-2 px-4 rounded">
               {memberButtonText}
