@@ -28,7 +28,9 @@ const FieldWrapper = ({
         children
       ) : (
         <input
-          {...register(name)}
+          {...register(name, {
+            valueAsNumber: type === "number" || type === "range",
+          })}
           placeholder={placeholder}
           type={type}
           className="block border w-full p-2 rounded"
