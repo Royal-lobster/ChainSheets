@@ -1,5 +1,5 @@
 import React from "react";
-import ChainSheetsIcon from "./ChainSheetsIcon";
+import ChainSheetsIcon from "../icons/ChainSheetsIcon";
 import { IconCirclePlus } from "@tabler/icons-react";
 
 const Navbar = () => {

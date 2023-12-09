@@ -1,3 +1,9 @@
+import PopularJournals from "./(home)/PopularJournals";
+
 export default function Home() {
-	return <main>Home Page</main>;
+  return (
+    <main>
+      <PopularJournals />
+    </main>
+  );
 }
