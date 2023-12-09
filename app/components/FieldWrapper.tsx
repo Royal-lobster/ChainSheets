@@ -10,6 +10,7 @@ type FieldWrapperProps = {
   type?: string;
   children?: React.ReactNode;
   defaultValue?: string; // Add a defaultValue prop for the range
+  isOnDark?: boolean;
 };
 
 const FieldWrapper = ({
@@ -21,6 +22,7 @@ const FieldWrapper = ({
   type = "text",
   children,
   defaultValue = "",
+  isOnDark = false,
 }: FieldWrapperProps) => {
   const [rangeValue, setRangeValue] = useState(defaultValue);
 
@@ -37,7 +39,12 @@ const FieldWrapper = ({
   return (
     <div>
       <div className="flex justify-between items-center mb-2">
-        <label className="block text-lg text-neutral-500">{label}:</label>
+        <label
+          data-on-dark={isOnDark ? "yes" : undefined}
+          className="block text-lg text-neutral-500 data-[on-dark]:text-neutral-400"
+        >
+          {label}:
+        </label>
         {type === "range" && <span className="text-lg">{rangeValue}%</span>}
       </div>
       {type === "range" ? (

@@ -9,6 +9,7 @@ import JournalAvatarUpload from "./JournalAvatarUpload";
 import Section from "../(layout)/Section";
 import { IconBuildingArch, IconRocket } from "@tabler/icons-react";
 import { button } from "../lib/variants";
+import { topics } from "@/data/topics";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
 const DEFAULT_MINIMUM_EXPERT_TOKENS = 50;
@@ -62,6 +63,7 @@ const CreateNewJournal = () => {
               name="journalAvatar"
               register={register}
               errors={errors}
+              isOnDark
             >
               <JournalAvatarUpload name="journalAvatar" register={register} />
             </FieldWrapper>
@@ -72,6 +74,7 @@ const CreateNewJournal = () => {
                 register={register}
                 errors={errors}
                 placeholder="Name of Journal"
+                isOnDark
               />
 
               <FieldWrapper
@@ -80,6 +83,7 @@ const CreateNewJournal = () => {
                 register={register}
                 errors={errors}
                 placeholder="Enter about your journal"
+                isOnDark
               >
                 <textarea
                   {...register("description")}
@@ -94,18 +98,18 @@ const CreateNewJournal = () => {
                 register={register}
                 errors={errors}
                 placeholder="Enter topics"
+                isOnDark
               >
                 <select
                   {...register("topics")}
                   className="border w-full p-2 rounded text-black"
-                  placeholder=""
+                  placeholder="Select topics for your journal"
                 >
-                  <option value="" disabled hidden style={{ display: "none" }}>
-                    Select topics for your journal
-                  </option>
-                  <option value="topic1">Artificial Intelligence</option>
-                  <option value="topic2">BlockChain</option>
-                  <option value="topic3">Computer Vision</option>
+                  {topics.map((topic) => (
+                    <option key={topic} value={topic}>
+                      {topic}
+                    </option>
+                  ))}
                 </select>
               </FieldWrapper>
             </div>
@@ -117,6 +121,7 @@ const CreateNewJournal = () => {
                 register={register}
                 errors={errors}
                 type="number"
+                isOnDark
               />
 
               <FieldWrapper
@@ -126,6 +131,7 @@ const CreateNewJournal = () => {
                 errors={errors}
                 type="range"
                 defaultValue="50"
+                isOnDark
               />
 
               <FieldWrapper
@@ -135,6 +141,7 @@ const CreateNewJournal = () => {
                 errors={errors}
                 type="range"
                 defaultValue="30"
+                isOnDark
               />
             </div>
           </div>
