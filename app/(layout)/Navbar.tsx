@@ -1,7 +1,8 @@
-import React from "react";
-import ChainSheetsIcon from "../assets/icons/ChainSheetsIcon";
-import { IconCirclePlus, IconWallet } from "@tabler/icons-react";
+"use client";
+import { IconCirclePlus } from "@tabler/icons-react";
+import { ConnectKitButton } from "connectkit";
 import Link from "next/link";
+import ChainSheetsIcon from "../assets/icons/ChainSheetsIcon";
 import { button } from "../assets/lib/helpers/variants";
 
 const Navbar = () => {
@@ -18,10 +19,7 @@ const Navbar = () => {
           <IconCirclePlus />
           <span className="hidden sm:inline">Create new Journal</span>
         </Link>
-        <button className={button()}>
-          <IconWallet />
-          <span className="hidden sm:inline">Connect Wallet</span>
-        </button>
+        <ConnectKitButton />
       </nav>
     </header>
   );
