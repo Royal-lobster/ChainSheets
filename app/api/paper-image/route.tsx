@@ -29,7 +29,7 @@ export async function GET(req: NextRequest) {
         }}
       >
         <h1
-          style={{ fontSize: "84px", fontWeight: "bolder", color: titleColor }}
+          style={{ fontSize: "64px", fontWeight: "bolder", color: titleColor }}
         >
           {title}
         </h1>
