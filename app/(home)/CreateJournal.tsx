@@ -10,6 +10,7 @@ import Section from "../(layout)/Section";
 import { IconBuildingArch, IconRocket } from "@tabler/icons-react";
 import { button } from "../assets/lib/helpers/variants";
 import { topics } from "@/app/assets/data/topics";
+import { createJournal } from "../assets/lib/functions/createJournal";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
 const DEFAULT_MINIMUM_EXPERT_TOKENS = 50;
@@ -19,9 +20,8 @@ const journalSchema = z.object({
   journalName: z.string(),
   journalAvatar: z.string(),
   description: z.string(),
-  topics: z.string(),
+  topic: z.string(),
   participationThreshold: z.number(),
-  minimumExpertTokens: z.number(),
   minimumApprovalPercentage: z.number(),
 });
 type Journal = z.infer<typeof journalSchema>;
@@ -37,15 +37,22 @@ const CreateJournal = () => {
       journalName: "",
       journalAvatar: "",
       description: "",
-      topics: topics[0],
+      topic: topics[0],
       participationThreshold: DEFAULT_PARTICIPATION_THRESHOLD,
-      minimumExpertTokens: DEFAULT_MINIMUM_EXPERT_TOKENS,
       minimumApprovalPercentage: DEFAULT_MINIMUM_APPROVAL_PERCENTAGE,
     },
   });
 
   const onSubmit = (data: Journal) => {
     console.log(data); // You can handle the form submission here
+    createJournal({
+      description: data.description,
+      image: data.journalAvatar,
+      name: data.journalName,
+      topic: data.topic,
+      participationThreshold: data.participationThreshold,
+      minimumApprovalPercentage: data.minimumApprovalPercentage,
+    });
   };
 
   return (
@@ -102,7 +109,7 @@ const CreateJournal = () => {
                 isOnDark
               >
                 <select
-                  {...register("topics")}
+                  {...register("topic")}
                   className="border w-full p-2 rounded text-black"
                   placeholder="Select topics for your journal"
                 >
@@ -116,15 +123,6 @@ const CreateJournal = () => {
             </div>
 
             <div className="flex-grow space-y-4">
-              <FieldWrapper
-                label="Minimum Expert Tokens"
-                name="minimumExpertTokens"
-                register={register}
-                errors={errors}
-                type="number"
-                isOnDark
-              />
-
               <FieldWrapper
                 label="Participation Threshold"
                 name="participationThreshold"

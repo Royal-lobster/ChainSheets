@@ -15,7 +15,6 @@ type CreateJournalArgs = {
   description: string;
   image: string;
   topic: string;
-  minimumExpertTokens: number;
   participationThreshold: number;
   minimumApprovalPercentage: number;
 };
@@ -25,7 +24,6 @@ export const createJournal = async ({
   description,
   image,
   topic,
-  minimumExpertTokens,
   participationThreshold,
   minimumApprovalPercentage,
 }: CreateJournalArgs) => {
@@ -61,10 +59,6 @@ export const createJournal = async ({
         name: "topic",
         url: topic,
       },
-      {
-        name: "minimumExpertTokens",
-        url: minimumExpertTokens.toString(),
-      }
     ],
   };
 
