@@ -38,7 +38,7 @@ const Modal = ({
             </Dialog.Close>
           </div>
           <p className="text-neutral-600 mb-4">{description}</p>
-          {children}
+          <div className="w-full">{children}</div>
           <div className="flex justify-end">
             {secondaryAction && (
               <button

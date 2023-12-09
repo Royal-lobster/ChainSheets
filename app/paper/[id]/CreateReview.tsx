@@ -30,6 +30,7 @@ const CreateReview = () => {
   return (
     <Modal
       title="Create Review"
+      description="Submit a review to this paper. Make sure your review must be the subject of this paper. and you are up to date with the latest revision."
       trigger={
         <button className={button({ type: "outline" })}>
           <IconFileCheck /> Submit Review
