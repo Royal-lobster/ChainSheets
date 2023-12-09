@@ -1,8 +1,8 @@
 import { shortenAddress } from "@/app/lib/shortenAddress";
 import { button, chip } from "@/app/lib/variants";
-import { IconFile, IconFileCheck, IconUser } from "@tabler/icons-react";
-import React from "react";
+import { IconFile, IconUser } from "@tabler/icons-react";
 import { z } from "zod";
+import CreateReview from "./CreateReview";
 
 export const paperStatus = z.enum(["draft", "accepted", "rejected"]);
 export type PaperStatus = z.infer<typeof paperStatus>;
@@ -50,9 +50,7 @@ const PaperHeader = ({
             <IconFile />
             View {paperStatus.enum.draft ? "Draft" : "Paper"}
           </button>
-          <button className={button({ type: "outline" })}>
-            <IconFileCheck /> Submit Review
-          </button>
+          <CreateReview />
         </div>
       </div>
 

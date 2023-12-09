@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import FieldWrapper from "@/app/components/FieldWrapper";
 
-const submitPaperSchema = z.object({
+const paperSubmissionSchema = z.object({
   name: z.string().min(1),
   description: z.string().min(1),
   pdf: z
@@ -20,18 +20,18 @@ const submitPaperSchema = z.object({
     ),
 });
 
-type SubmitPaperFormValues = z.infer<typeof submitPaperSchema>;
+type PaperSubmission = z.infer<typeof paperSubmissionSchema>;
 
-const SubmitPaper = () => {
+const CreatePaperSubmission = () => {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<SubmitPaperFormValues>({
-    resolver: zodResolver(submitPaperSchema),
+  } = useForm<PaperSubmission>({
+    resolver: zodResolver(paperSubmissionSchema),
   });
 
-  const onSubmit = (data: SubmitPaperFormValues) => {
+  const onSubmit = (data: PaperSubmission) => {
     console.log(data); // You can handle the form submission here
   };
 
@@ -68,13 +68,8 @@ const SubmitPaper = () => {
             placeholder="Paper Description"
             register={register}
             errors={errors}
-          >
-            <textarea
-              {...register("description")}
-              placeholder="Paper Description"
-              className="block border w-full p-2 rounded text-black"
-            />
-          </FieldWrapper>
+            type="textarea"
+          />
         </div>
         <button type="submit" className={button({ class: "mt-10 w-full" })}>
           Submit
@@ -84,4 +79,4 @@ const SubmitPaper = () => {
   );
 };
 
-export default SubmitPaper;
+export default CreatePaperSubmission;

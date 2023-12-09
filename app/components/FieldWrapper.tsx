@@ -55,6 +55,12 @@ const FieldWrapper = ({
           onChange={handleRangeChange}
           value={rangeValue}
         />
+      ) : type === "textarea" ? (
+        <textarea
+          {...register(name)}
+          placeholder={placeholder}
+          className="block border w-full p-2 rounded text-black"
+        />
       ) : (
         children || (
           <input
