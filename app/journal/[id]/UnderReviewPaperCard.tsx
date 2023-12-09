@@ -16,20 +16,20 @@ const UnderReviewPaperCard = ({
   lastReview = "4th Dec 2023",
 }: UnderReviewPaperCardProps) => {
   return (
-    <div className="w-full rounded overflow-hidden shadow-md border border-neutral-200 p-4 bg-white flex flex-col md:flex-row justify-between items-center">
+    <div className="w-full p-6 rounded overflow-hidden shadow-md border border-neutral-200 bg-white flex flex-col md:flex-row justify-between items-center">
       {/* Left side */}
       <div className="md:mr-4">
         <div className="font-bold text-xl mb-2">{title}</div>
-        <p className="text-neutral-700 text-base">{description}</p>
+        <p>{description}</p>
       </div>
       {/* Center and Right side */}
-      <div className="flex flex-grow mt-6 md:items-center w-full md:w-[unset] justify-between text-neutral-600 text-sm md:mt-0 md:ml-4">
+      <div className="flex flex-grow mt-6 md:items-center w-full md:w-[unset] justify-between text-neutral-500 text-sm md:mt-0 md:ml-4">
         <div className="md:mx-auto">
           <p>has {reviewCount} Reviews</p>
           <p>Created on {createdOn}</p>
           <p>Last Review {lastReview}</p>
         </div>
-        <button className="bg-black text-white py-2 px-4 rounded hover:bg-neutral-800 transition-colors duration-300 mt-4 md:mt-0">
+        <button className="bg-neutral-900 text-white py-2 px-4 rounded mt-4 md:mt-0">
           Review
         </button>
       </div>

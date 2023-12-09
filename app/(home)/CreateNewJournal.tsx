@@ -48,7 +48,7 @@ const CreateNewJournal = () => {
   return (
     <div
       id="create-journal"
-      className="xl:-mx-20 px-10 xl:px-20 py-10 bg-black text-white rounded-lg"
+      className="xl:-mx-20 px-10 xl:px-20 py-10 bg-neutral-900 text-white rounded-lg"
     >
       <Section title="Establish your own decentralized journal">
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">

@@ -16,8 +16,8 @@ interface JournalHeaderProps {
 const JOURNAL_IMAGE_SIZE = 180;
 
 const JournalHeader = ({
-  journalImage: sectionIconSrc = "https://source.unsplash.com/random/500x500",
-  journalTitle: sectionTitle = "AI and Machine Learning",
+  journalImage = "https://source.unsplash.com/random/500x500",
+  journalTitle = "AI and Machine Learning",
   topic = "Artificial Intelligence",
   description = "All papers on AI and Machine learning Research",
   memberButtonText = "Become Member",
@@ -33,7 +33,7 @@ const JournalHeader = ({
         <div className="flex-shrink-0">
           <Image
             className="rounded"
-            src={sectionIconSrc}
+            src={journalImage}
             width={JOURNAL_IMAGE_SIZE}
             height={JOURNAL_IMAGE_SIZE}
             alt="Section Icon"
@@ -46,14 +46,14 @@ const JournalHeader = ({
             {topic}
           </div>
           <div className="font-bold text-2xl md:text-3xl mt-2">
-            {sectionTitle}
+            {journalTitle}
           </div>
-          <p className="text-neutral-600 text-sm mt-1">{description}</p>
+          <p className="text-neutral-500 mt-1">{description}</p>
           <div className="flex mt-4 space-x-4 flex-wrap">
-            <button className="bg-black text-white font-bold py-2 px-4 rounded">
+            <button className="bg-neutral-900 text-white font-bold py-2 px-4 rounded">
               {memberButtonText}
             </button>
-            <button className="bg-transparent text-black font-semibold py-2 px-4 border border-black rounded">
+            <button className="bg-transparent font-semibold py-2 px-4 border border-neutral-900 rounded">
               {paperButtonText}
             </button>
           </div>
