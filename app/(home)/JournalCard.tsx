@@ -6,7 +6,7 @@ interface PopularJournalCardProps {
   members?: number;
 }
 
-const PopularJournalCard = ({
+const JournalCard = ({
   title = "AI and Machine Learning",
   description = "All papers on AI and Machine learning Research",
   members = 200,
@@ -29,4 +29,4 @@ const PopularJournalCard = ({
   );
 };
 
-export default PopularJournalCard;
+export default JournalCard;

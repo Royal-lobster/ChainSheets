@@ -8,7 +8,7 @@ interface PopularPapersCardProps {
   holders?: number;
 }
 
-const PopularPapersCard = ({
+const PapersCard = ({
   category = "AI and Machine Learning",
   title = "Blockchain Vulnerability detection with LLMs",
   description = "All papers on AI and Machine learning Research",
@@ -38,4 +38,4 @@ const PopularPapersCard = ({
   );
 };
 
-export default PopularPapersCard;
+export default PapersCard;

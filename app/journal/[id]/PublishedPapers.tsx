@@ -1,10 +1,10 @@
+import PapersCard from "@/app/(home)/PapersCard";
+import Section from "@/app/(layout)/Section";
 import React from "react";
-import Section from "../(layout)/Section";
-import PapersCard from "./PapersCard";
 
-const PopularPapers = () => {
+const PublishedPapers = () => {
   return (
-    <Section title="Popular Papers">
+    <Section title="Published Papers">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {[...Array(6)].map((index) => (
           <PapersCard key={index} />
@@ -14,4 +14,4 @@ const PopularPapers = () => {
   );
 };
 
-export default PopularPapers;
+export default PublishedPapers;
