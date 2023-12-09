@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { z } from "zod";
-import FieldWrapper from "./FieldWrapper";
+import FieldWrapper from "../components/FieldWrapper";
 import JournalAvatarUpload from "./JournalAvatarUpload";
 import Section from "../(layout)/Section";
 import { IconBuildingArch, IconRocket } from "@tabler/icons-react";
@@ -65,7 +65,7 @@ const CreateNewJournal = () => {
             >
               <JournalAvatarUpload name="journalAvatar" register={register} />
             </FieldWrapper>
-            <div className="flex-grow">
+            <div className="flex-grow space-y-4">
               <FieldWrapper
                 label="Journal Name"
                 name="journalName"
@@ -100,7 +100,7 @@ const CreateNewJournal = () => {
                   className="border w-full p-2 rounded text-black"
                   placeholder=""
                 >
-                  <option value="" disabled hidden style={{ display: 'none' }}>
+                  <option value="" disabled hidden style={{ display: "none" }}>
                     Select topics for your journal
                   </option>
                   <option value="topic1">Artificial Intelligence</option>
@@ -110,7 +110,7 @@ const CreateNewJournal = () => {
               </FieldWrapper>
             </div>
 
-            <div className="flex-grow">
+            <div className="flex-grow space-y-4">
               <FieldWrapper
                 label="Minimum Expert Tokens"
                 name="minimumExpertTokens"

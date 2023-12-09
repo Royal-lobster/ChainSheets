@@ -17,7 +17,7 @@ const Section = ({
 }: SectionProps) => {
   return (
     <section {...props} className={cn("flex flex-col gap-8", className)}>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center flex-wrap justify-center sm:justify-start gap-4">
         {icon}
         <h2 className="text-center sm:text-left text-2xl sm:text-3xl font-bold">
           {title}

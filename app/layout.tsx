@@ -23,12 +23,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={cn(
           font.className,
-          "container max-w-6xl mx-auto p-4 flex flex-col min-h-screen bg-neutral-100 text-neutral-800"
+          "flex justify-center p-4 min-h-screen bg-neutral-100  text-neutral-800"
         )}
       >
-        <Navbar />
-        <div className="flex-grow my-10">{children}</div>
-        <Footer />
+        <div className="container flex flex-col">
+          <Navbar />
+          <div className="flex-grow my-10">{children}</div>
+          <Footer />
+        </div>
       </body>
     </html>
   );
