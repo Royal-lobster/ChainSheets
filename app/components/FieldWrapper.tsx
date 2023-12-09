@@ -35,9 +35,9 @@ const FieldWrapper = ({
   }, [type, rangeValue]);
 
   return (
-    <div className="my-4">
+    <div>
       <div className="flex justify-between items-center mb-2">
-        <label className="block text-lg text-neutral-400">{label}:</label>
+        <label className="block text-lg text-neutral-500">{label}:</label>
         {type === "range" && <span className="text-lg">{rangeValue}%</span>}
       </div>
       {type === "range" ? (
@@ -48,13 +48,15 @@ const FieldWrapper = ({
           onChange={handleRangeChange}
           value={rangeValue}
         />
-      ) : children || (
-        <input
-          {...register(name)}
-          placeholder={placeholder}
-          type={type}
-          className="block border w-full p-2 rounded text-black"
-        />
+      ) : (
+        children || (
+          <input
+            {...register(name)}
+            placeholder={placeholder}
+            type={type}
+            className="block border w-full p-2 rounded text-black"
+          />
+        )
       )}
       <p className="text-xs text-red-500 mt-1">
         {errors[name]?.message?.toString()}
