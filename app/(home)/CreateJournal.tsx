@@ -9,7 +9,7 @@ import JournalAvatarUpload from "./JournalAvatarUpload";
 import Section from "../(layout)/Section";
 import { IconBuildingArch, IconRocket } from "@tabler/icons-react";
 import { button } from "../assets/lib/variants";
-import { topics } from "@/data/topics";
+import { topics } from "@/app/assets/data/topics";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
 const DEFAULT_MINIMUM_EXPERT_TOKENS = 50;
