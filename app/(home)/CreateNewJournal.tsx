@@ -7,7 +7,7 @@ import { z } from "zod";
 import FieldWrapper from "./FieldWrapper";
 import JournalAvatarUpload from "./JournalAvatarUpload";
 import Section from "../(layout)/Section";
-import { IconRocket } from "@tabler/icons-react";
+import { IconBuildingArch, IconRocket } from "@tabler/icons-react";
 import { button } from "../lib/variants";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
@@ -51,7 +51,10 @@ const CreateNewJournal = () => {
       id="create-journal"
       className="-mx-4 sm:mx-0 xl:-mx-24 px-8 xl:px-24 py-24 bg-neutral-900 text-white sm:rounded-lg"
     >
-      <Section title="Establish your own decentralized journal">
+      <Section
+        title="Establish your own decentralized journal"
+        icon={<IconBuildingArch size={32} />}
+      >
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           <div className="flex flex-col md:flex-row justify-between gap-8">
             <FieldWrapper

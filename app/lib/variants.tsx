@@ -20,7 +20,7 @@ export const button = tv({
         "bg-transparent text-neutral-900 border-2 border-neutral-900 hover:bg-neutral-100 hover:shadow-md",
       link: "bg-transparent text-neutral-900 hover:underline hover:underline-offset-4",
       lightOutline:
-        "bg-transparent text-neutral-100 border-2 border-neutral-100",
+        "bg-transparent text-neutral-100 border-2 border-neutral-400 hover:bg-neutral-800 hover:shadow-md",
     },
     size: {
       sm: "px-3 py-1 text-sm",
