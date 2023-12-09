@@ -98,12 +98,14 @@ const CreateNewJournal = () => {
                 <select
                   {...register("topics")}
                   className="border w-full p-2 rounded text-black"
-                  placeholder="Select main topic for your journal"
+                  placeholder=""
                 >
-                  <option value="" disabled selected>Select topics for your journal</option>
-                  <option value="topic1">Topic 1</option>
-                  <option value="topic2">Topic 2</option>
-                  <option value="topic3">Topic 3</option>
+                  <option value="" disabled hidden style={{ display: 'none' }}>
+                    Select topics for your journal
+                  </option>
+                  <option value="topic1">Artificial Intelligence</option>
+                  <option value="topic2">BlockChain</option>
+                  <option value="topic3">Computer Vision</option>
                 </select>
               </FieldWrapper>
             </div>
