@@ -65,7 +65,7 @@ const CreateNewJournal = () => {
             >
               <JournalAvatarUpload name="journalAvatar" register={register} />
             </FieldWrapper>
-            <div className="flex-grow">
+            <div className="flex-grow space-y-4">
               <FieldWrapper
                 label="Journal Name"
                 name="journalName"
@@ -110,7 +110,7 @@ const CreateNewJournal = () => {
               </FieldWrapper>
             </div>
 
-            <div className="flex-grow">
+            <div className="flex-grow space-y-4">
               <FieldWrapper
                 label="Minimum Expert Tokens"
                 name="minimumExpertTokens"
