@@ -1,7 +1,12 @@
 import React from "react";
+import PaperHeader from "./PaperHeader";
 
 const PaperPage = () => {
-  return <div>PaperPage</div>;
+  return (
+    <div>
+      <PaperHeader />
+    </div>
+  );
 };
 
 export default PaperPage;
