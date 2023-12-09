@@ -2,10 +2,18 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { z } from "zod";
+import FieldWrapper from "./FieldWrapper";
+import JournalAvatarUpload from "./JournalAvatarUpload";
+
+const DEFAULT_PARTICIPATION_THRESHOLD = 50;
+const DEFAULT_MINIMUM_EXPERT_TOKENS = 50;
+const DEFAULT_MINIMUM_APPROVAL_PERCENTAGE = 500;
 
 const JournalMetadataSchema = z.object({
   journalName: z.string(),
+  journalAvatar: z.string(),
   description: z.string(),
   topics: z.array(z.string()),
   participationThreshold: z.number(),
@@ -21,78 +29,65 @@ const CreateNewJournal = () => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(JournalMetadataSchema),
+    defaultValues: {
+      journalName: "",
+      journalAvatar: "",
+      description: "",
+      topics: [],
+      participationThreshold: DEFAULT_PARTICIPATION_THRESHOLD,
+      minimumExpertTokens: DEFAULT_MINIMUM_EXPERT_TOKENS,
+      minimumApprovalPercentage: DEFAULT_MINIMUM_APPROVAL_PERCENTAGE,
+    },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     console.log(data); // You can handle the form submission here
   };
 
-  // Our form with React Hook Form
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="p-4 w-full max-w-lg mx-auto"
     >
-      <div className="mb-2">
-        <label className="block mb-1 text-sm font-semibold text-gray-700">
-          Journal Avatar:
-        </label>
-        <input
-          {...register("journalAvatar")}
-          type="file"
-          className="border w-full p-2 rounded"
-        />
-      </div>
+      <FieldWrapper
+        label="Journal Avatar"
+        name="journalAvatar"
+        register={register}
+        errors={errors}
+      >
+        <JournalAvatarUpload />
+      </FieldWrapper>
+      <FieldWrapper
+        label="Journal Name"
+        name="journalName"
+        register={register}
+        errors={errors}
+        placeholder="Name of Journal"
+      />
 
-      <div className="mb-2">
-        <label className="block mb-1 text-sm font-semibold text-gray-700">
-          Journal Name:
-        </label>
-        <input
-          {...register("journalName")}
-          placeholder="Name of Journal"
-          className="border w-full p-2 rounded"
-        />
-        <p className="text-xs text-red-500 mt-1">
-          {errors.journalName?.message?.toString()}
-        </p>
-      </div>
+      <FieldWrapper
+        label="Description"
+        name="description"
+        register={register}
+        errors={errors}
+        placeholder="Enter about your journal"
+      />
 
-      <div className="mb-2">
-        <label className="block mb-1 text-sm font-semibold text-gray-700">
-          Description:
-        </label>
-        <textarea
-          {...register("description")}
-          placeholder="Enter about your journal"
-          className="border w-full p-2 rounded"
-        />
-        <p className="text-xs text-red-500 mt-1">
-          {errors.description?.message?.toString()}
-        </p>
-      </div>
+      <FieldWrapper
+        label="Minimum Expert Tokens"
+        name="minimumExpertTokens"
+        register={register}
+        errors={errors}
+        type="number"
+      />
 
-      <div className="mb-2">
-        <label className="block mb-1 text-sm font-semibold text-gray-700">
-          Topics:
-        </label>
-        <Controller
-          control={control}
-          name="topics"
-          render={({ field }) => (
-            <select {...field} className="border w-full p-2 rounded">
-              {/* Replace these options with actual topic choices */}
-              <option value="topic1">Topic 1</option>
-              <option value="topic2">Topic 2</option>
-              <option value="topic3">Topic 3</option>
-            </select>
-          )}
-        />
-        <p className="text-xs text-red-500 mt-1">
-          {errors.topics?.message?.toString()}
-        </p>
-      </div>
-
+      <FieldWrapper
+        label="Participation Threshold"
+        name="participationThreshold"
+        register={register}
+        errors={errors}
+        type="range"
+      />
       <button
         type="submit"
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
