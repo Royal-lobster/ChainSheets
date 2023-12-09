@@ -1,7 +1,7 @@
 "use client";
 import FieldWrapper from "@/app/assets/components/FieldWrapper";
 import Modal from "@/app/assets/components/Modal";
-import { button } from "@/app/assets/lib/variants";
+import { button } from "@/app/assets/lib/helpers/variants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconFileCheck } from "@tabler/icons-react";
 import React from "react";

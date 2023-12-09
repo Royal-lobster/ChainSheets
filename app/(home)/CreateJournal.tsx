@@ -8,7 +8,7 @@ import FieldWrapper from "../assets/components/FieldWrapper";
 import JournalAvatarUpload from "./JournalAvatarUpload";
 import Section from "../(layout)/Section";
 import { IconBuildingArch, IconRocket } from "@tabler/icons-react";
-import { button } from "../assets/lib/variants";
+import { button } from "../assets/lib/helpers/variants";
 import { topics } from "@/app/assets/data/topics";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;

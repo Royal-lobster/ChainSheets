@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { cn } from "../assets/lib/cn";
+import { cn } from "../assets/lib/helpers/cn";
 
 type SectionProps = {
   icon?: ReactNode;

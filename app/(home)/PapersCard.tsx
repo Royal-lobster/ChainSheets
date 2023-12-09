@@ -1,5 +1,5 @@
 import React from "react";
-import { chip } from "../assets/lib/variants";
+import { chip } from "../assets/lib/helpers/variants";
 
 interface PopularPapersCardProps {
   category?: string;

@@ -2,7 +2,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { IconX } from "@tabler/icons-react";
 import React from "react";
-import { button } from "../lib/variants";
+import { button } from "../lib/helpers/variants";
 
 type DialogProps = {
   title: string;

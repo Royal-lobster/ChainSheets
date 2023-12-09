@@ -1,3 +1,0 @@
-// TODO: 1. Take DAO Parameters - Name, Image, Description, Thresholds and so on and create a DAO
-// TODO: 2. Create plugin for DAO to create NFT contract when proposal gets published (only paper proposals) - Is there a way to add parameters to what type of proposal is being published?
-// TODO: 3. Create plugin for DAO to send expert soul bound token to the author of the paper when it gets published

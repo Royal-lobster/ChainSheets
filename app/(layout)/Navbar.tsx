@@ -2,7 +2,7 @@ import React from "react";
 import ChainSheetsIcon from "../assets/icons/ChainSheetsIcon";
 import { IconCirclePlus, IconWallet } from "@tabler/icons-react";
 import Link from "next/link";
-import { button } from "../assets/lib/variants";
+import { button } from "../assets/lib/helpers/variants";
 
 const Navbar = () => {
   return (
