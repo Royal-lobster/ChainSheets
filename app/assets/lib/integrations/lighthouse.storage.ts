@@ -1,21 +1,11 @@
 import { env } from "@/app/env.mjs";
-import axios from "axios";
+import lighthouse from "@lighthouse-web3/sdk";
 
-export async function uploadToLighthouseStorage(blob: Blob) {
-    const formData = new FormData();
-    formData.append("file", blob);
-  
-    const response = await axios.post(
-      "https://api.lighthouse.storage/upload",
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${env.LIGHTHOUSE_STORAGE_API_KEY}`,
-        },
-      }
-    );
-  
-    return response.data.value.ipfs;
-  }
-  
+export async function uploadImageToLighthouseStorage(blob: Blob) {
+  const file = new File([blob], "image.png", { type: blob.type });
+  const output = await lighthouse.upload(file, env.LIGHTHOUSE_STORAGE_API_KEY);
+  console.log(
+    "🎉 Uploaded https://gateway.lighthouse.storage/ipfs/" + output.data.Hash
+  );
+  return output.data.Hash;
+}

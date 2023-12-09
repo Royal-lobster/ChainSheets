@@ -17,7 +17,6 @@
     "@t3-oss/env-core": "^0.7.1",
     "@tabler/icons-react": "^2.42.0",
     "@vercel/og": "^0.5.20",
-    "axios": "^1.6.2",
     "clsx": "^2.0.0",
     "connectkit": "^1.5.3",
     "ethers": "^6.9.0",
