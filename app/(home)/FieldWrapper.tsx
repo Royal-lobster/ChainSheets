@@ -44,7 +44,7 @@ const FieldWrapper = ({
         <input
           {...register(name)}
           type={type}
-          className="block border w-full p-2 rounded text-black"
+          className="w-full h-2 rounded text-black"
           onChange={handleRangeChange}
           value={rangeValue}
         />
