@@ -16,7 +16,7 @@ const PapersCard = ({
   holders = 200,
 }: PopularPapersCardProps) => {
   return (
-    <div className="w-full rounded overflow-hidden shadow-md p-6 text-neutral-700 border border-neutral-200">
+    <div className="w-full rounded-lg bg-white overflow-hidden shadow-md p-6 text-neutral-700 border border-neutral-200">
       <div className="inline px-2 py-1 bg-neutral-200 text-neutral-500 text-xs rounded-full uppercase tracking-wide">
         {category}
       </div>

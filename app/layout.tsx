@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { PT_Serif } from "next/font/google";
+import { Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import Navbar from "./(layout)/Navbar";
 import Footer from "./(layout)/Footer";
 import { cn } from "./lib/cn";
 
-const ptSerif = PT_Serif({ subsets: ["latin"], weight: ["400", "700"] });
+const font = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
   title: "ChainSheet",
@@ -22,8 +22,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <body
         className={cn(
-          ptSerif.className,
-          "container max-w-6xl mx-auto p-4 flex flex-col min-h-screen"
+          font.className,
+          "container max-w-6xl mx-auto p-4 flex flex-col min-h-screen bg-neutral-100"
         )}
       >
         <Navbar />
