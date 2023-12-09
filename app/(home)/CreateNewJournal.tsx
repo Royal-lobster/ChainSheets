@@ -46,7 +46,10 @@ const CreateNewJournal = () => {
   };
 
   return (
-    <div className="xl:-mx-20 px-10 xl:px-20 py-10 bg-black text-white rounded-lg">
+    <div
+      id="create-journal"
+      className="xl:-mx-20 px-10 xl:px-20 py-10 bg-black text-white rounded-lg"
+    >
       <Section title="Establish your own decentralized journal">
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           <div className="flex flex-col md:flex-row justify-between gap-8">
