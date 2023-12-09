@@ -6,12 +6,13 @@ import { env } from "@/app/env.mjs";
 
 const config = createConfig(
   getDefaultConfig({
-    alchemyId: process.env.ALCHEMY_ID, // or infuraId
+    infuraId: env.NEXT_PUBLIC_INFURA_ID,
     walletConnectProjectId: env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID,
     appName: "ChainSheet",
-    appDescription: "Your App Description",
-    appUrl: "chainsheets.vercel.app", // your app's url
-    appIcon: "", // your app's icon, no bigger than 1024x1024px (max. 1MB)
+    appDescription: "A decentralized academic publishing framework",
+    appUrl: "chainsheets.vercel.app",
+    appIcon:
+      "https://bafkreidu4sosagd245txe37o273eh6lz5dyxeud5jpgges7ljrohzjbeq4.ipfs.nftstorage.link",
   })
 );
 
