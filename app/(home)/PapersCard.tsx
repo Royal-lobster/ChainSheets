@@ -1,4 +1,5 @@
 import React from "react";
+import { chip } from "../lib/variants";
 
 interface PopularPapersCardProps {
   category?: string;
@@ -17,9 +18,7 @@ const PapersCard = ({
 }: PopularPapersCardProps) => {
   return (
     <div className="w-full rounded-lg bg-white overflow-hidden shadow-md p-6 border border-neutral-200">
-      <div className="inline px-2 py-1 bg-neutral-200 text-neutral-500 text-xs rounded-full uppercase tracking-wide">
-        {category}
-      </div>
+      <div className={chip()}>{category}</div>
       <div className="mt-2 mb-4">
         <div className="text-lg md:text-2xl font-bold line-clamp-2">
           {title}

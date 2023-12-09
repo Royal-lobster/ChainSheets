@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { button } from "@/app/lib/variants";
+import { button, chip } from "@/app/lib/variants";
 import { IconNote, IconUsers } from "@tabler/icons-react";
 
 interface JournalHeaderProps {
@@ -42,9 +42,7 @@ const JournalHeader = ({
 
         {/* Center content */}
         <div className="flex gap-1 flex-col text-center sm:text-left">
-          <div className="w-max px-1.5 mx-auto sm:mx-0 p-0.5 text-sm rounded-full bg-neutral-200 text-neutral-500">
-            {topic}
-          </div>
+          <div className={chip()}>{topic}</div>
           <div className="font-bold text-2xl md:text-3xl mt-2">
             {journalTitle}
           </div>
