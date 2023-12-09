@@ -1,13 +1,21 @@
-import { Wallet } from "@ethersproject/wallet";
 import { Context, ContextParams } from "@aragon/sdk-client";
 import { SupportedNetwork } from "@aragon/sdk-client-common";
-import { env } from "@/app/env.mjs";
+import { getWalletClient } from "wagmi/actions";
+import { walletClientToSigner } from "../helpers/walletClientToSigner";
+import { polygonMumbai } from "viem/chains";
 
+export const getAragonContext = async () => {
+  const walletClient = await getWalletClient();
 
-const minimalContextParams: ContextParams = {
+  if (!walletClient) {
+    throw new Error("No wallet client");
+  }
+
+  const minimalContextParams: ContextParams = {
     network: SupportedNetwork.MUMBAI,
     web3Providers: "https://rpc.ankr.com/polygon_mumbai",
-    signer: new Wallet("0x" + env.NEXT_PUBLIC_WALLET_PRIVATE_KEY),
+    signer: walletClientToSigner(walletClient, polygonMumbai),
   };
 
-export const context = new Context(minimalContextParams);
+  return new Context(minimalContextParams);
+};

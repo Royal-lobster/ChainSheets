@@ -7,8 +7,8 @@ import {
   TokenVotingPluginInstall,
 } from "@aragon/sdk-client";
 import { env } from "@/app/env.mjs";
-import { context } from "../integrations/aragon";
 import { SupportedNetwork } from "@aragon/sdk-client-common";
+import { getAragonContext } from "../integrations/aragon";
 
 type CreateJournalArgs = {
   name: string;
@@ -27,7 +27,7 @@ export const createJournal = async ({
   participationThreshold,
   minimumApprovalPercentage,
 }: CreateJournalArgs) => {
-  const client: Client = new Client(context);
+  const client: Client = new Client(await getAragonContext());
 
   const tokenVotingPluginInstallParams: TokenVotingPluginInstall = {
     votingSettings: {

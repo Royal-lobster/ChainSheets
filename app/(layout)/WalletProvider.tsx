@@ -3,6 +3,7 @@
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 import { WagmiConfig, createConfig } from "wagmi";
 import { env } from "@/app/env.mjs";
+import { polygonMumbai } from "viem/chains";
 
 const config = createConfig(
   getDefaultConfig({
@@ -13,6 +14,7 @@ const config = createConfig(
     appUrl: "chainsheets.vercel.app",
     appIcon:
       "https://bafkreidu4sosagd245txe37o273eh6lz5dyxeud5jpgges7ljrohzjbeq4.ipfs.nftstorage.link",
+    chains: [polygonMumbai],
   })
 );
 
