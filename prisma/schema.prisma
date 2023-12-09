@@ -1,0 +1,67 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["fullTextSearch"]
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Journal {
+    id          Int      @id @default(autoincrement())
+    title       String
+    description String
+    topic       String
+    daoAddress  String
+    paper       Paper[]
+    member      member[]
+}
+
+model Paper {
+    id          Int         @id @default(autoincrement())
+    journalId   Int
+    title       String
+    description String
+    filehash    String
+    reviewId    Int
+    Journal     Journal?    @relation(fields: [journalId], references: [id])
+    review      review?     @relation(fields: [reviewId], references: [id])
+    holder      holder[]
+    publisher   publisher[]
+}
+
+model member {
+    id        Int      @id @default(autoincrement())
+    address   String
+    journalId Int
+    Journal   Journal? @relation(fields: [journalId], references: [id])
+    review    review[]
+}
+
+model publisher {
+    id      Int      @id @default(autoincrement())
+    paperId Int
+    address String
+    Paper   Paper?   @relation(fields: [paperId], references: [id])
+    review  review[]
+}
+
+model holder {
+    id      Int    @id @default(autoincrement())
+    address String
+    paperId Int
+    Paper   Paper? @relation(fields: [paperId], references: [id])
+}
+
+model review {
+    id            Int        @id @default(autoincrement())
+    memberId      Int
+    publisherId   Int
+    reviewTitle   String
+    reviewDetails String
+    reviewStatus  String
+    member        member?    @relation(fields: [memberId], references: [id])
+    publisher     publisher? @relation(fields: [publisherId], references: [id])
+    paper         Paper[]
+}
