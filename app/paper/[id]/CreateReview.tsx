@@ -8,11 +8,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-const ReviewSchema = z.object({
+const reviewSchema = z.object({
   title: z.string(),
   description: z.string(),
 });
-type Review = z.infer<typeof ReviewSchema>;
+type Review = z.infer<typeof reviewSchema>;
 
 const CreateReview = () => {
   const {
@@ -20,7 +20,7 @@ const CreateReview = () => {
     register,
     formState: { errors },
   } = useForm<Review>({
-    resolver: zodResolver(ReviewSchema),
+    resolver: zodResolver(reviewSchema),
   });
 
   const onSubmit = (data: Review) => {

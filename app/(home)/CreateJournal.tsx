@@ -15,7 +15,7 @@ const DEFAULT_PARTICIPATION_THRESHOLD = 50;
 const DEFAULT_MINIMUM_EXPERT_TOKENS = 50;
 const DEFAULT_MINIMUM_APPROVAL_PERCENTAGE = 30;
 
-const JournalMetadataSchema = z.object({
+const journalSchema = z.object({
   journalName: z.string(),
   journalAvatar: z.string(),
   description: z.string(),
@@ -24,14 +24,15 @@ const JournalMetadataSchema = z.object({
   minimumExpertTokens: z.number(),
   minimumApprovalPercentage: z.number(),
 });
+type Journal = z.infer<typeof journalSchema>;
 
-const CreateNewJournal = () => {
+const CreateJournal = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(JournalMetadataSchema),
+    resolver: zodResolver(journalSchema),
     defaultValues: {
       journalName: "",
       journalAvatar: "",
@@ -43,7 +44,7 @@ const CreateNewJournal = () => {
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: Journal) => {
     console.log(data); // You can handle the form submission here
   };
 
@@ -160,4 +161,4 @@ const CreateNewJournal = () => {
   );
 };
 
-export default CreateNewJournal;
+export default CreateJournal;
