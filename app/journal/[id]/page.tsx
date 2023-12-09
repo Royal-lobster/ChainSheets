@@ -1,7 +1,12 @@
 import React from "react";
+import JournalHeader from "./JournalHeader";
 
 const JournalPage = () => {
-  return <div>JournalPage</div>;
+  return (
+    <main>
+      <JournalHeader />
+    </main>
+  );
 };
 
 export default JournalPage;
