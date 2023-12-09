@@ -23,7 +23,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={cn(
           font.className,
-          "container max-w-6xl mx-auto p-6 flex flex-col min-h-screen bg-neutral-100 text-neutral-800"
+          "container max-w-6xl mx-auto p-4 flex flex-col min-h-screen bg-neutral-100 text-neutral-800"
         )}
       >
         <Navbar />

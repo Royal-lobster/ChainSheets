@@ -8,6 +8,7 @@ import FieldWrapper from "./FieldWrapper";
 import JournalAvatarUpload from "./JournalAvatarUpload";
 import Section from "../(layout)/Section";
 import { IconRocket } from "@tabler/icons-react";
+import { button } from "../lib/variants";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
 const DEFAULT_MINIMUM_EXPERT_TOKENS = 50;
@@ -27,7 +28,6 @@ const CreateNewJournal = () => {
   const {
     register,
     handleSubmit,
-    control,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(JournalMetadataSchema),
@@ -49,7 +49,7 @@ const CreateNewJournal = () => {
   return (
     <div
       id="create-journal"
-      className="xl:-mx-24 px-10 xl:px-24 py-24 bg-neutral-900 text-white rounded-lg"
+      className="-mx-4 sm:mx-0 xl:-mx-24 px-8 xl:px-24 py-24 bg-neutral-900 text-white sm:rounded-lg"
     >
       <Section title="Establish your own decentralized journal">
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
@@ -115,7 +115,10 @@ const CreateNewJournal = () => {
           </div>
           <button
             type="submit"
-            className="bg-transparent border border-neutral-700 mt-4 mx-auto flex gap-2 text-white font-bold py-2 px-20 rounded"
+            className={button({
+              type: "lightOutline",
+              class: "px-10 mt-10 mx-auto",
+            })}
           >
             <IconRocket /> <span>Launch</span>
           </button>
