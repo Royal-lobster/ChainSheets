@@ -17,8 +17,10 @@ ChainSheets is a cutting-edge decentralized application (DApp) transforming acad
 ```bash
 # Clone the repository
 git clone https://github.com/Royal-lobster/ChainSheets
+
 # Navigate to the repository
 cd ChainSheets
+
 # Install dependencies
 yarn install
 ```
@@ -33,14 +35,15 @@ ChainSheets offers a unique ecosystem where research and academic publishing are
 - **Published Papers**: Papers that have been reviewed and accepted by the DAO members.
 - **Paper Holders**: Users who mint NFTs of a DAO's papers, granting them access to read these published works.
 
+**NOTE**: The term "$ExpertSHEETS" serves as a generic placeholder. Each DAO within ChainSheets has its own distinct token name, reflecting its specific research focus and community. And these tokens are Soulbound tokens
+
 ### Token Dynamics
 - **$ExpertSHEETS**: These are topic-specific tokens, unique to each DAO (e.g., $AI SHEETS for an AI-focused DAO and $BC SHEETS for a Blockchain focused DAO). Members of a DAO hold these tokens, symbolizing their expertise and role within that specific research field. Importantly, $ExpertSHEETS are **NON-TRANSFERABLE**, ensuring dedicated membership and expertise within each DAO.
 - **$SHEETS**: General tokens on the ChainSheets platform, accessible to all users. They are used to mint NFTs, which grant access to published papers.
 
-**Note on Token Naming**: The term "$ExpertSHEETS" serves as a generic placeholder. Each DAO within ChainSheets has its own distinct token name, reflecting its specific research focus and community.
 
 ### Interactions and Rewards
-- **Accessing Papers**: Users spend $SHEETS to mint NFTs, gaining access to specific DAO-published papers. This action increases the DAO's value, indirectly benefiting its members.
+- **Accessing Papers**: Users spend $SHEETS to mint NFTs, gaining access to specific published paper of a DAO the user wants. This action increases the DAO's value, indirectly benefiting its members.
 - **Member Privileges**: Members with $ExpertSHEETS can access all papers published within their specific DAO.
 - **Proposal Acceptance and Rewards**: When a user's research proposal is accepted by a DAO, they are rewarded with the corresponding DAO's $ExpertSHEETS. Accumulating these tokens over time can elevate a user to a DAO member, enabling them to share in the profits generated from NFT mints.
 
@@ -52,6 +55,8 @@ Contributions are what make the open-source community thrive. We welcome any con
 
 
 ## 📝 License
+
+ChainSheets is open source software licensed under the MIT License.
 
 
 ## 📩 Contact
