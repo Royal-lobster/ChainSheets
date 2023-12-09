@@ -28,7 +28,6 @@ const CreateNewJournal = () => {
   const {
     register,
     handleSubmit,
-    control,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(JournalMetadataSchema),
@@ -50,7 +49,7 @@ const CreateNewJournal = () => {
   return (
     <div
       id="create-journal"
-      className="xl:-mx-24 px-10 xl:px-24 py-24 bg-neutral-900 text-white rounded-lg"
+      className="-mx-4 sm:mx-0 xl:-mx-24 px-8 xl:px-24 py-24 bg-neutral-900 text-white sm:rounded-lg"
     >
       <Section title="Establish your own decentralized journal">
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
@@ -118,7 +117,7 @@ const CreateNewJournal = () => {
             type="submit"
             className={button({
               type: "lightOutline",
-              class: "px-10 mx-auto",
+              class: "px-10 mt-10 mx-auto",
             })}
           >
             <IconRocket /> <span>Launch</span>
