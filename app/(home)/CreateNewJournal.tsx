@@ -85,8 +85,25 @@ const CreateNewJournal = () => {
                   {...register("description")}
                   placeholder="Enter about your journal"
                   className="border w-full p-2 rounded"
-                  rows={4}
                 />
+              </FieldWrapper>
+
+              <FieldWrapper
+                label="Topics"
+                name="topics"
+                register={register}
+                errors={errors}
+                placeholder="Enter topics"
+              >
+                <select
+                  {...register("topics")}
+                  className="border w-full p-2 rounded"
+                  placeholder="Select main topic for your journal"
+                >
+                  <option value="topic1">Topic 1</option>
+                  <option value="topic2">Topic 2</option>
+                  <option value="topic3">Topic 3</option>
+                </select>
               </FieldWrapper>
             </div>
 
