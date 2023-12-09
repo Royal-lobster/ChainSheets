@@ -4,11 +4,11 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { z } from "zod";
-import FieldWrapper from "../components/FieldWrapper";
+import FieldWrapper from "../assets/components/FieldWrapper";
 import JournalAvatarUpload from "./JournalAvatarUpload";
 import Section from "../(layout)/Section";
 import { IconBuildingArch, IconRocket } from "@tabler/icons-react";
-import { button } from "../lib/variants";
+import { button } from "../assets/lib/variants";
 import { topics } from "@/data/topics";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;

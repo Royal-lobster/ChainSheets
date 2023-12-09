@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Roboto_Slab } from "next/font/google";
-import "./globals.css";
+import "@/app/assets/styles/globals.css";
 import Navbar from "./(layout)/Navbar";
 import Footer from "./(layout)/Footer";
-import { cn } from "./lib/cn";
+import { cn } from "./assets/lib/cn";
 import WalletProvider from "./(layout)/WalletProvider";
 
 const font = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });

@@ -1,3 +1,4 @@
+import { IconAlertCircle } from "@tabler/icons-react";
 import React, { useState, useEffect } from "react";
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 
@@ -38,7 +39,7 @@ const FieldWrapper = ({
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-2">
+      <div className="flex justify-between items-center mb-2 w-full">
         <label
           data-on-dark={isOnDark ? "yes" : undefined}
           className="block text-lg text-neutral-500 data-[on-dark]:text-neutral-400"
@@ -55,6 +56,13 @@ const FieldWrapper = ({
           onChange={handleRangeChange}
           value={rangeValue}
         />
+      ) : type === "textarea" ? (
+        <textarea
+          {...register(name)}
+          placeholder={placeholder}
+          className="block border w-full p-2 rounded text-black"
+          rows={3}
+        />
       ) : (
         children || (
           <input
@@ -65,9 +73,12 @@ const FieldWrapper = ({
           />
         )
       )}
-      <p className="text-xs text-red-500 mt-1">
-        {errors[name]?.message?.toString()}
-      </p>
+      {errors[name]?.message && (
+        <p className="flex gap-2 text-xs text-red-500 mt-1">
+          <IconAlertCircle />
+          {errors[name]?.message?.toString()}
+        </p>
+      )}
     </div>
   );
 };

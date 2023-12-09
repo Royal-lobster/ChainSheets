@@ -1,4 +1,4 @@
-import { button } from "@/app/lib/variants";
+import { button } from "@/app/assets/lib/variants";
 import { IconFileCheck } from "@tabler/icons-react";
 import React from "react";
 
