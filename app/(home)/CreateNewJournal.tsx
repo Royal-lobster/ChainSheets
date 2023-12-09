@@ -12,7 +12,7 @@ import { button } from "../lib/variants";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
 const DEFAULT_MINIMUM_EXPERT_TOKENS = 50;
-const DEFAULT_MINIMUM_APPROVAL_PERCENTAGE = 500;
+const DEFAULT_MINIMUM_APPROVAL_PERCENTAGE = 30;
 
 const JournalMetadataSchema = z.object({
   journalName: z.string(),
