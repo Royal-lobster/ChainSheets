@@ -1,8 +1,8 @@
 export const topics = [
-    "Computer Science",
-    "Physics",
-    "Mathematics",
-    "Chemistry",
-    "Biology",
-    "English",
+    "Artificial Intelligence",
+    "Quantum Computing",
+    "Machine Learning",
+    "Data Science",
+    "Distributed Systems",
+    "Computer Vision",
 ]

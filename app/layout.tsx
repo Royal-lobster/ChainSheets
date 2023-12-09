@@ -28,7 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <WalletProvider>
-          <div className="container flex flex-col">
+          <div className="container flex flex-col max-w-6xl">
             <Navbar />
             <div className="flex-grow my-10">{children}</div>
             <Footer />

@@ -19,7 +19,7 @@ const JournalMetadataSchema = z.object({
   journalName: z.string(),
   journalAvatar: z.string(),
   description: z.string(),
-  topics: z.array(z.string()),
+  topics: z.string(),
   participationThreshold: z.number(),
   minimumExpertTokens: z.number(),
   minimumApprovalPercentage: z.number(),
@@ -36,7 +36,7 @@ const CreateNewJournal = () => {
       journalName: "",
       journalAvatar: "",
       description: "",
-      topics: [],
+      topics: topics[0],
       participationThreshold: DEFAULT_PARTICIPATION_THRESHOLD,
       minimumExpertTokens: DEFAULT_MINIMUM_EXPERT_TOKENS,
       minimumApprovalPercentage: DEFAULT_MINIMUM_APPROVAL_PERCENTAGE,
@@ -50,7 +50,7 @@ const CreateNewJournal = () => {
   return (
     <div
       id="create-journal"
-      className="-mx-4 sm:mx-0 xl:-mx-10 px-8 xl:px-24 py-24 bg-neutral-900 text-white sm:rounded-lg"
+      className="-mx-4 sm:mx-0 xl:-mx-16 px-8 xl:px-24 py-24 bg-neutral-900 text-white sm:rounded-lg"
     >
       <Section
         title="Establish your own decentralized journal"
