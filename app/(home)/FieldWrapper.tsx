@@ -31,7 +31,7 @@ const FieldWrapper = ({
           })}
           placeholder={placeholder}
           type={type}
-          className="block border w-full p-2 rounded"
+          className="block border w-full p-2 rounded text-black"
         />
       )}
       <p className="text-xs text-red-500 mt-1">

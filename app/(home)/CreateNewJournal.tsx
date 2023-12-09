@@ -84,7 +84,7 @@ const CreateNewJournal = () => {
                 <textarea
                   {...register("description")}
                   placeholder="Enter about your journal"
-                  className="border w-full p-2 rounded"
+                  className="border w-full p-2 rounded text-black"
                 />
               </FieldWrapper>
 
