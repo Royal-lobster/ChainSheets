@@ -1,5 +1,5 @@
-import { shortenAddress } from "@/app/lib/shortenAddress";
-import { button, chip } from "@/app/lib/variants";
+import { shortenAddress } from "@/app/assets/lib/shortenAddress";
+import { button, chip } from "@/app/assets/lib/variants";
 import { IconFile, IconUser } from "@tabler/icons-react";
 import { z } from "zod";
 import CreateReview from "./CreateReview";

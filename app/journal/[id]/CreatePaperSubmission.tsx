@@ -1,12 +1,12 @@
 "use client";
-import Modal from "@/app/components/Modal";
-import { button } from "@/app/lib/variants";
+import Modal from "@/app/assets/components/Modal";
+import { button } from "@/app/assets/lib/variants";
 import { IconNote } from "@tabler/icons-react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import FieldWrapper from "@/app/components/FieldWrapper";
+import FieldWrapper from "@/app/assets/components/FieldWrapper";
 
 const paperSubmissionSchema = z.object({
   name: z.string().min(1),
