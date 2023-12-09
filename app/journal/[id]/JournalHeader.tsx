@@ -1,4 +1,4 @@
-import { button, chip } from "@/app/assets/lib/variants";
+import { button, chip } from "@/app/assets/lib/helpers/variants";
 import { IconUsers } from "@tabler/icons-react";
 import Image from "next/image";
 import CreatePaperSubmission from "./CreatePaperSubmission";

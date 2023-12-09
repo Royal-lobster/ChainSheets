@@ -1,6 +1,6 @@
 "use client";
 import Modal from "@/app/assets/components/Modal";
-import { button } from "@/app/assets/lib/variants";
+import { button } from "@/app/assets/lib/helpers/variants";
 import { IconNote } from "@tabler/icons-react";
 import React from "react";
 import { useForm } from "react-hook-form";
