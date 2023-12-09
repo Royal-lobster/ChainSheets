@@ -12,7 +12,7 @@ import { button } from "../lib/variants";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
 const DEFAULT_MINIMUM_EXPERT_TOKENS = 50;
-const DEFAULT_MINIMUM_APPROVAL_PERCENTAGE = 500;
+const DEFAULT_MINIMUM_APPROVAL_PERCENTAGE = 30;
 
 const JournalMetadataSchema = z.object({
   journalName: z.string(),
@@ -84,7 +84,7 @@ const CreateNewJournal = () => {
                 <textarea
                   {...register("description")}
                   placeholder="Enter about your journal"
-                  className="border w-full p-2 rounded"
+                  className="border w-full p-2 rounded text-black"
                 />
               </FieldWrapper>
 
@@ -97,12 +97,15 @@ const CreateNewJournal = () => {
               >
                 <select
                   {...register("topics")}
-                  className="border w-full p-2 rounded"
-                  placeholder="Select main topic for your journal"
+                  className="border w-full p-2 rounded text-black"
+                  placeholder=""
                 >
-                  <option value="topic1">Topic 1</option>
-                  <option value="topic2">Topic 2</option>
-                  <option value="topic3">Topic 3</option>
+                  <option value="" disabled hidden style={{ display: 'none' }}>
+                    Select topics for your journal
+                  </option>
+                  <option value="topic1">Artificial Intelligence</option>
+                  <option value="topic2">BlockChain</option>
+                  <option value="topic3">Computer Vision</option>
                 </select>
               </FieldWrapper>
             </div>
@@ -122,6 +125,7 @@ const CreateNewJournal = () => {
                 register={register}
                 errors={errors}
                 type="range"
+                defaultValue="50"
               />
 
               <FieldWrapper
@@ -130,6 +134,7 @@ const CreateNewJournal = () => {
                 register={register}
                 errors={errors}
                 type="range"
+                defaultValue="30"
               />
             </div>
           </div>
