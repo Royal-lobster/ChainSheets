@@ -6,9 +6,9 @@ import {
   TokenVotingClient,
   TokenVotingPluginInstall,
 } from "@aragon/sdk-client";
-import { GasFeeEstimation } from "@aragon/sdk-client-common";
 import { env } from "@/app/env.mjs";
 import { context } from "../integrations/aragon";
+import { SupportedNetwork } from "@aragon/sdk-client-common";
 
 type CreateJournalArgs = {
   name: string;
@@ -32,13 +32,13 @@ export const createJournal = async ({
   const tokenVotingPluginInstallParams: TokenVotingPluginInstall = {
     votingSettings: {
       minDuration: 60 * 60 * 24 * 2,
-      minParticipation: participationThreshold,
-      supportThreshold: minimumApprovalPercentage,
+      minParticipation: participationThreshold/100,
+      supportThreshold: minimumApprovalPercentage/100,
     },
     useToken: {
       tokenAddress: env.NEXT_PUBLIC_EXPERT_SHEET_TOKEN_ADDRESS,
       wrappedToken: {
-        name: "ExpertSHEET",
+        name: "ExpertToken",
         symbol: "ESHT",
       },
     },
@@ -47,7 +47,7 @@ export const createJournal = async ({
   const tokenVotingPluginInstallItem =
     TokenVotingClient.encoding.getPluginInstallItem(
       tokenVotingPluginInstallParams,
-      "goerli"
+        SupportedNetwork.MUMBAI
     );
 
   const daoMetadata: DaoMetadata = {
@@ -68,11 +68,6 @@ export const createJournal = async ({
     metadataUri,
     plugins: [tokenVotingPluginInstallItem],
   };
-
-  const estimatedGas: GasFeeEstimation = await client.estimation.createDao(
-    createParams
-  );
-  console.log("⛽ Gas Insights: ", { avg: estimatedGas.average, max: estimatedGas.max });
 
   const steps = client.methods.createDao(createParams);
 
