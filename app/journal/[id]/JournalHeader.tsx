@@ -2,10 +2,10 @@ import React from "react";
 import Image from "next/image";
 
 interface JournalHeaderProps {
-  sectionIconSrc?: string;
-  sectionTitle?: string;
-  sectionSubtitle?: string;
-  sectionDescription?: string;
+  journalImage?: string;
+  journalTitle?: string;
+  topic?: string;
+  description?: string;
   memberButtonText?: string;
   paperButtonText?: string;
   memberCount?: number;
@@ -16,10 +16,10 @@ interface JournalHeaderProps {
 const JOURNAL_IMAGE_SIZE = 180;
 
 const JournalHeader = ({
-  sectionIconSrc = "https://source.unsplash.com/random/500x500",
-  sectionTitle = "AI and Machine Learning",
-  sectionSubtitle = "Artificial Intelligence",
-  sectionDescription = "All papers on AI and Machine learning Research",
+  journalImage: sectionIconSrc = "https://source.unsplash.com/random/500x500",
+  journalTitle: sectionTitle = "AI and Machine Learning",
+  topic = "Artificial Intelligence",
+  description = "All papers on AI and Machine learning Research",
   memberButtonText = "Become Member",
   paperButtonText = "Submit Paper",
   memberCount = 1000,
@@ -42,13 +42,13 @@ const JournalHeader = ({
 
         {/* Center content */}
         <div className="flex gap-1 flex-col text-center sm:text-left">
-          <div className="w-max px-1.5 p-0.5 text-sm rounded-full bg-neutral-200 text-neutral-500">
-            {sectionSubtitle}
+          <div className="w-max px-1.5 mx-auto sm:mx-0 p-0.5 text-sm rounded-full bg-neutral-200 text-neutral-500">
+            {topic}
           </div>
           <div className="font-bold text-2xl md:text-3xl mt-2">
             {sectionTitle}
           </div>
-          <p className="text-gray-600 text-sm mt-1">{sectionDescription}</p>
+          <p className="text-gray-600 text-sm mt-1">{description}</p>
           <div className="flex mt-4 space-x-4 flex-wrap">
             <button className="bg-black text-white font-bold py-2 px-4 rounded">
               {memberButtonText}
