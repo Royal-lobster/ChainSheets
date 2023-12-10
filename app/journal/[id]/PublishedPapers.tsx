@@ -31,6 +31,7 @@ const PublishedPapers = async ({ id }: { id: string }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {publishedPapers?.paper.map((paper) => (
           <PapersCard
+            id={paper.id}
             category={publishedPapers.topic}
             title={paper.title}
             description={paper.description}

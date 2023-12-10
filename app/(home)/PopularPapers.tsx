@@ -32,6 +32,7 @@ const PopularPapers = async () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {popularPapers.map((paper) => (
           <PapersCard
+            id={paper.id}
             category={paper.Journal?.topic || "Uncategorized"}
             title={paper.title}
             description={paper.description}

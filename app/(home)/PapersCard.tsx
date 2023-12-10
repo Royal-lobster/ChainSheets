@@ -1,7 +1,9 @@
 import React from "react";
 import { chip } from "../assets/lib/helpers/variants";
+import Link from "next/link";
 
 interface PopularPapersCardProps {
+  id: number;
   category: string;
   title: string;
   description: string;
@@ -10,6 +12,7 @@ interface PopularPapersCardProps {
 }
 
 const PapersCard = ({
+  id,
   category,
   title,
   description,
@@ -20,9 +23,12 @@ const PapersCard = ({
     <div className="w-full rounded-lg bg-white overflow-hidden shadow-md p-6 border border-neutral-200">
       <div className={chip()}>{category}</div>
       <div className="mt-2 mb-4">
-        <div className="text-lg md:text-2xl font-bold line-clamp-2">
+        <Link
+          href={`/paper/${id}`}
+          className="text-lg md:text-2xl font-bold line-clamp-2"
+        >
           {title}
-        </div>
+        </Link>
         <p className="text-neutral-700 text-sm md:text-base line-clamp-2">
           {description}
         </p>
