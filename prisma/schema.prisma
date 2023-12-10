@@ -43,7 +43,6 @@ model member {
 
 model publisher {
     id      Int      @id @default(autoincrement())
-    paperId Int
     address String   @unique
     review  review[]
     Paper   Paper[]

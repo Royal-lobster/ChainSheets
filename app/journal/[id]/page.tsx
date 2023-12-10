@@ -7,7 +7,7 @@ const JournalPage = ({ params }: { params: { id: string } }) => {
   return (
     <main className="flex flex-col gap-10">
       <JournalHeader id={params.id} />
-      <PublishedPapers />
+      <PublishedPapers id={params.id} />
       <UnderReviewPapers />
     </main>
   );

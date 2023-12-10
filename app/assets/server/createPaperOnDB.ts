@@ -7,6 +7,7 @@ type CreatePaperArgs = {
     title: string;
     description: string;
     filehash: string;
+    publisher: string;
 };
 
 export async function createPaperOnDB(args: CreatePaperArgs): Promise<void> {
@@ -14,6 +15,16 @@ export async function createPaperOnDB(args: CreatePaperArgs): Promise<void> {
     await prisma.paper.create({
       data: {
         title: args.title,
+        publisher: {
+          connectOrCreate: {
+            where: {
+              address: args.publisher,
+            },
+            create: {
+              address: args.publisher,
+            }
+          }
+        },
         description: args.description,
         filehash: args.filehash,
       },

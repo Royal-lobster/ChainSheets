@@ -10,6 +10,7 @@ import FieldWrapper from "@/app/assets/components/FieldWrapper";
 import { createPaperOnDB } from "@/app/assets/server/createPaperOnDB";
 import { uploadPdfToLighthouseStorage } from "@/app/assets/lib/integrations/lighthouse.storage";
 import { usePathname } from "next/navigation";
+import { useAccount } from "wagmi";
 
 const paperSubmissionSchema = z.object({
   name: z.string().min(1),
@@ -33,15 +34,17 @@ const CreatePaperSubmission = ({ id }: { id: string }) => {
   } = useForm<PaperSubmission>({
     resolver: zodResolver(paperSubmissionSchema),
   });
-  const {} = usePathname();
+  const { address } = useAccount();
 
   const onSubmit = async (data: PaperSubmission) => {
     const hash = await uploadPdfToLighthouseStorage(data.pdf[0]);
+    if (!address) throw new Error("No address found");
     createPaperOnDB({
       description: data.description,
       title: data.name,
       filehash: hash,
       journalId: id,
+      publisher: address!,
     });
   };
 

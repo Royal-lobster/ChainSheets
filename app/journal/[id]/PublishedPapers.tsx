@@ -1,13 +1,43 @@
 import PapersCard from "@/app/(home)/PapersCard";
 import Section from "@/app/(layout)/Section";
+import prisma from "@/app/assets/server/db";
 import React from "react";
 
-const PublishedPapers = () => {
+const PublishedPapers = async ({ id }: { id: string }) => {
+  const publishedPapers = await prisma.journal.findUnique({
+    where: {
+      daoAddress: id,
+    },
+    include: {
+      paper: {
+        include: {
+          _count: {
+            select: {
+              holder: true,
+            },
+          },
+          publisher: {
+            select: {
+              address: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
   return (
     <Section title="Published Papers">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {[...Array(4)].map((index) => (
-          <PapersCard key={index} />
+        {publishedPapers?.paper.map((paper) => (
+          <PapersCard
+            category={publishedPapers.topic}
+            title={paper.title}
+            description={paper.description}
+            author={paper.publisher.address}
+            holders={paper._count.holder}
+            key={paper.id}
+          />
         ))}
       </div>
     </Section>
