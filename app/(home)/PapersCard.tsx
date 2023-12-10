@@ -2,19 +2,19 @@ import React from "react";
 import { chip } from "../assets/lib/helpers/variants";
 
 interface PopularPapersCardProps {
-  category?: string;
-  title?: string;
-  description?: string;
+  category: string;
+  title: string;
+  description: string;
   author?: string;
-  holders?: number;
+  holders: number;
 }
 
 const PapersCard = ({
-  category = "AI and Machine Learning",
-  title = "Blockchain Vulnerability detection with LLMs",
-  description = "All papers on AI and Machine learning Research",
-  author = "0x145...2352, srujangurram.eth",
-  holders = 200,
+  category,
+  title,
+  description,
+  author,
+  holders,
 }: PopularPapersCardProps) => {
   return (
     <div className="w-full rounded-lg bg-white overflow-hidden shadow-md p-6 border border-neutral-200">

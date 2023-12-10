@@ -11,9 +11,9 @@ interface PopularJournalCardProps {
 const JOURNAL_IMAGE_SIZE = 100;
 
 const JournalCard = ({
-  title = "AI and Machine Learning",
-  description = "All papers on AI and Machine learning Research",
-  members = 200,
+  title,
+  description,
+  members,
 }: PopularJournalCardProps) => {
   return (
     <div className="w-full flex items-center flex-shrink-0 bg-white rounded-lg border border-neutral-200 shadow-md overflow-hidden">

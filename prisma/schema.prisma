@@ -20,16 +20,17 @@ model Journal {
 }
 
 model Paper {
-    id          Int         @id @default(autoincrement())
+    id          Int       @id @default(autoincrement())
     journalId   Int
     title       String
     description String
     filehash    String
     reviewId    Int?
-    Journal     Journal?    @relation(fields: [journalId], references: [id])
-    review      review?     @relation(fields: [reviewId], references: [id])
+    Journal     Journal?  @relation(fields: [journalId], references: [id])
+    review      review?   @relation(fields: [reviewId], references: [id])
     holder      holder[]
-    publisher   publisher[]
+    publisher   publisher @relation(fields: [publisherId], references: [id])
+    publisherId Int
 }
 
 model member {
@@ -44,8 +45,8 @@ model publisher {
     id      Int      @id @default(autoincrement())
     paperId Int
     address String   @unique
-    Paper   Paper?   @relation(fields: [paperId], references: [id])
     review  review[]
+    Paper   Paper[]
 }
 
 model holder {
