@@ -5,6 +5,9 @@ import {
   DaoMetadata,
   TokenVotingClient,
   TokenVotingPluginInstall,
+  GrantPermissionDecodedParams,
+  GrantPermissionParams,
+  Permissions,
 } from "@aragon/sdk-client";
 import { env } from "@/app/env.mjs";
 import { context } from "../integrations/aragon";
@@ -32,8 +35,8 @@ export const createJournal = async ({
   const tokenVotingPluginInstallParams: TokenVotingPluginInstall = {
     votingSettings: {
       minDuration: 60 * 60 * 24 * 2,
-      minParticipation: participationThreshold/100,
-      supportThreshold: minimumApprovalPercentage/100,
+      minParticipation: participationThreshold / 100,
+      supportThreshold: minimumApprovalPercentage / 100,
     },
     useToken: {
       tokenAddress: env.NEXT_PUBLIC_EXPERT_SHEET_TOKEN_ADDRESS,
@@ -47,7 +50,7 @@ export const createJournal = async ({
   const tokenVotingPluginInstallItem =
     TokenVotingClient.encoding.getPluginInstallItem(
       tokenVotingPluginInstallParams,
-        SupportedNetwork.MUMBAI
+      SupportedNetwork.MUMBAI
     );
 
   const daoMetadata: DaoMetadata = {
