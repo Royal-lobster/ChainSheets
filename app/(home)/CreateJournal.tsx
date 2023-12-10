@@ -1,8 +1,8 @@
 "use client";
-import React from "react";
+
+import React, { useTransition } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { z } from "zod";
 import FieldWrapper from "../assets/components/FieldWrapper";
 import JournalAvatarUpload from "./JournalAvatarUpload";
@@ -11,13 +11,14 @@ import { IconBuildingArch, IconRocket } from "@tabler/icons-react";
 import { button } from "../assets/lib/helpers/variants";
 import { topics } from "@/app/assets/data/topics";
 import { createJournal } from "../assets/lib/functions/createJournal";
+import { useRouter } from "next/navigation";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
 const DEFAULT_MINIMUM_APPROVAL_PERCENTAGE = 30;
 
 const journalSchema = z.object({
-  journalName: z.string(),
-  journalAvatar: z.string(),
+  name: z.string(),
+  image: z.string(),
   description: z.string(),
   topic: z.string(),
   participationThreshold: z.number(),
@@ -26,6 +27,8 @@ const journalSchema = z.object({
 type Journal = z.infer<typeof journalSchema>;
 
 const CreateJournal = () => {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const {
     register,
     handleSubmit,
@@ -33,8 +36,8 @@ const CreateJournal = () => {
   } = useForm({
     resolver: zodResolver(journalSchema),
     defaultValues: {
-      journalName: "",
-      journalAvatar: "",
+      name: "",
+      image: "",
       description: "",
       topic: topics[0],
       participationThreshold: DEFAULT_PARTICIPATION_THRESHOLD,
@@ -42,15 +45,10 @@ const CreateJournal = () => {
     },
   });
 
-  const onSubmit = (data: Journal) => {
-    console.log(data); // You can handle the form submission here
-    createJournal({
-      description: data.description,
-      image: data.journalAvatar,
-      name: data.journalName,
-      topic: data.topic,
-      participationThreshold: data.participationThreshold,
-      minimumApprovalPercentage: data.minimumApprovalPercentage,
+  const onSubmit = async (data: Journal) => {
+    startTransition(async () => {
+      const { daoAddress } = (await createJournal(data)) || {};
+      router.push(`/journal/${daoAddress}`);
     });
   };
 
@@ -150,7 +148,7 @@ const CreateJournal = () => {
               class: "px-10 mt-10 mx-auto",
             })}
           >
-            <IconRocket /> <span>Launch</span>
+            <IconRocket /> <span>{isPending ? "Creating..." : "Launch"}</span>
           </button>
         </form>
       </Section>
