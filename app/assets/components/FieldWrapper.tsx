@@ -50,7 +50,7 @@ const FieldWrapper = ({
       </div>
       {type === "range" ? (
         <input
-          {...register(name)}
+          {...register(name, { valueAsNumber: true })}
           type={type}
           className="w-full h-14"
           onChange={handleRangeChange}
