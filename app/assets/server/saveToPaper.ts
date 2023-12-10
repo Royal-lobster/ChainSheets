@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-type CreateJournalArgs = {
+type CreatePaperArgs = {
     journalId: number;
     title: string;
     description: string;
@@ -11,7 +11,7 @@ type CreateJournalArgs = {
     ipfsImage: string;
 };
 
-export async function createJournal(args: CreateJournalArgs): Promise<void> {
+export async function createJournal(args: CreatePaperArgs): Promise<void> {
   try {
     await prisma.paper.create({
       data: {
@@ -23,9 +23,9 @@ export async function createJournal(args: CreateJournalArgs): Promise<void> {
         ipfsImage: args.ipfsImage,
       },
     });
-    console.log('Journal entry created successfully');
+    console.log('Paper proposal created successfully');
   } catch (error) {
-    console.error('Error creating journal entry:', error);
+    console.error('Error creating paper proposal:', error);
     throw error;
   }
 }
