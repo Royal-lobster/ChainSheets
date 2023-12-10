@@ -2,7 +2,7 @@
 import FieldWrapper from "@/app/assets/components/FieldWrapper";
 import Modal from "@/app/assets/components/Modal";
 import { button } from "@/app/assets/lib/helpers/variants";
-import { saveToReview } from "@/app/assets/server/saveToReview";
+import { createReviewOnDB } from "@/app/assets/server/createReviewOnDB";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconFileCheck, IconLoader } from "@tabler/icons-react";
 import React from "react";
@@ -17,11 +17,11 @@ const reviewSchema = z.object({
 type Review = z.infer<typeof reviewSchema>;
 
 type CreateReviewProps = {
-  saveToReview: typeof saveToReview;
+  createReviewOnDB: typeof createReviewOnDB;
   author: string;
 };
 
-const CreateReview = ({ saveToReview, author }: CreateReviewProps) => {
+const CreateReview = ({ createReviewOnDB, author }: CreateReviewProps) => {
   const [loading, setLoading] = React.useState(false);
   const { address } = useAccount();
   const {
@@ -34,6 +34,13 @@ const CreateReview = ({ saveToReview, author }: CreateReviewProps) => {
 
   const onSubmit = async (data: Review) => {
     setLoading(true);
+    await createReviewOnDB({
+      memberAddress: author,
+      publisherAddress: author,
+      reviewDetails: data.description,
+      reviewStatus: "pending",
+      reviewTitle: data.title,
+    });
     setLoading(false);
   };
 
