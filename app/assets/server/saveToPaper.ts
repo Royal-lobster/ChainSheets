@@ -7,7 +7,6 @@ type CreatePaperArgs = {
     title: string;
     description: string;
     filehash: string;
-    reviewId: number;
     ipfsImage: string;
 };
 
@@ -19,7 +18,6 @@ export async function createPaper(args: CreatePaperArgs): Promise<void> {
         title: args.title,
         description: args.description,
         filehash: args.filehash,
-        reviewId: args.reviewId,
         ipfsImage: args.ipfsImage,
       },
     });
