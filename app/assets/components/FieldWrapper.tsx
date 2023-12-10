@@ -52,7 +52,7 @@ const FieldWrapper = ({
         <input
           {...register(name)}
           type={type}
-          className="w-full h-2 rounded text-black"
+          className="w-full h-14"
           onChange={handleRangeChange}
           value={rangeValue}
         />
@@ -60,7 +60,7 @@ const FieldWrapper = ({
         <textarea
           {...register(name)}
           placeholder={placeholder}
-          className="block border w-full p-2 rounded text-black"
+          className="block border w-full rounded-lg shadow-sm py-3 px-4 text-black"
           rows={3}
         />
       ) : (
@@ -69,16 +69,18 @@ const FieldWrapper = ({
             {...register(name)}
             placeholder={placeholder}
             type={type}
-            className="block border w-full p-2 rounded text-black"
+            className="block border w-full rounded-lg shadow-sm py-3 px-4 text-black"
           />
         )
       )}
-      {errors[name]?.message && (
-        <p className="flex gap-2 text-xs text-red-500 mt-1">
-          <IconAlertCircle />
-          {errors[name]?.message?.toString()}
-        </p>
-      )}
+      <p className="flex gap-2 text-xs text-red-500 mt-2 items-center">
+        {errors[name]?.message && (
+          <>
+            <IconAlertCircle size={16} />
+            <span className="text-sm">{errors[name]?.message?.toString()}</span>
+          </>
+        )}
+      </p>
     </div>
   );
 };
