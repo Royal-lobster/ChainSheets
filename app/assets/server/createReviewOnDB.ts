@@ -32,7 +32,6 @@ export async function createReviewOnDB(args: createReviewArgs) {
         publisherId: publisher.id,
         reviewTitle: args.reviewTitle,
         reviewDetails: args.reviewDetails,
-        reviewStatus: args.reviewStatus,
       },
     });
     console.log('Review entry created successfully');

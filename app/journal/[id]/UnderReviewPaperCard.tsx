@@ -3,19 +3,19 @@ import { IconFileCheck } from "@tabler/icons-react";
 import React from "react";
 
 interface UnderReviewPaperCardProps {
-  title?: string;
-  description?: string;
-  reviewCount?: number;
-  createdOn?: string;
-  lastReview?: string;
+  title: string;
+  description: string;
+  reviewCount: number;
+  createdOn: string;
+  lastReview: string;
 }
 
 const UnderReviewPaperCard = ({
-  title = "Blockchain Vulnerability detection with LLMs",
-  description = "All papers on AI and Machine learning Research",
-  reviewCount = 10,
-  createdOn = "12th Oct 2023",
-  lastReview = "4th Dec 2023",
+  title,
+  description,
+  reviewCount,
+  createdOn,
+  lastReview,
 }: UnderReviewPaperCardProps) => {
   return (
     <div className="w-full p-6 rounded-lg overflow-hidden shadow-md border border-neutral-200 bg-white flex flex-col md:flex-row justify-between items-center">

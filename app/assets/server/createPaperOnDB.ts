@@ -14,6 +14,7 @@ export async function createPaperOnDB(args: CreatePaperArgs): Promise<void> {
   try {
     await prisma.paper.create({
       data: {
+        status: 'PENDING',
         title: args.title,
         publisher: {
           connectOrCreate: {

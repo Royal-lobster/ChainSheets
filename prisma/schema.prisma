@@ -25,12 +25,21 @@ model Paper {
     title       String
     description String
     filehash    String
+    status      Status
     reviewId    Int?
     Journal     Journal?  @relation(fields: [journalId], references: [id])
-    review      review?   @relation(fields: [reviewId], references: [id])
     holder      holder[]
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
     publisher   publisher @relation(fields: [publisherId], references: [id])
     publisherId Int
+    reviews     review[]
+}
+
+enum Status {
+    PENDING
+    APPROVED
+    REJECTED
 }
 
 model member {
@@ -61,8 +70,8 @@ model review {
     publisherId   Int
     reviewTitle   String
     reviewDetails String
-    reviewStatus  String
     member        member?    @relation(fields: [memberId], references: [id])
     publisher     publisher? @relation(fields: [publisherId], references: [id])
-    paper         Paper[]
+    Paper         Paper?     @relation(fields: [paperId], references: [id])
+    paperId       Int?
 }
