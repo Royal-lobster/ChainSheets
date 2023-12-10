@@ -40,7 +40,6 @@ const CreatePaperSubmission = ({ id }: { id: string }) => {
     createPaperOnDB({
       description: data.description,
       title: data.name,
-      ipfsImage: "",
       filehash: hash,
       journalId: id,
     });
