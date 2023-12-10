@@ -13,7 +13,7 @@ import { env } from "@/app/env.mjs";
 import { SupportedNetwork } from "@aragon/sdk-client-common";
 import { getAragonContext } from "../integrations/aragon";
 import { Journal } from "@/app/(home)/CreateJournal";
-
+import { useAccount } from "wagmi";
 
 export const createJournal = async ({
   name,
@@ -23,6 +23,7 @@ export const createJournal = async ({
   participationThreshold,
   minimumApprovalPercentage,
 }: Journal) => {
+  const { address } = useAccount();
   const client: Client = new Client(await getAragonContext());
 
   const tokenVotingPluginInstallParams: TokenVotingPluginInstall = {
@@ -78,6 +79,11 @@ export const createJournal = async ({
             daoAddress: step.address,
             pluginAddresses: step.pluginAddresses,
           };
+          const params: GrantPermissionParams = {
+            who: address as `0x${string}`,
+            where: step.address,
+            permission: Permissions.EXECUTE_PERMISSION,
+          };
           console.log("🚀 Journal Deployed: ", result);
           return result;
       }
@@ -85,9 +91,4 @@ export const createJournal = async ({
       console.error(err);
     }
   }
-  const params: GrantPermissionParams = {
-    // who: , // USER
-    // where: "", // dao Address
-    permission: Permissions.EXECUTE_PERMISSION,
-  };
 };
