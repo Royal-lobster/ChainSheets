@@ -5,12 +5,15 @@ import {
   DaoMetadata,
   TokenVotingClient,
   TokenVotingPluginInstall,
+  GrantPermissionDecodedParams,
+  GrantPermissionParams,
+  Permissions,
 } from "@aragon/sdk-client";
 import { env } from "@/app/env.mjs";
 import { SupportedNetwork } from "@aragon/sdk-client-common";
 import { getAragonContext } from "../integrations/aragon";
 import { Journal } from "@/app/(home)/CreateJournal";
-
+import { writeContract } from "wagmi/actions";
 
 export const createJournal = async ({
   name,
@@ -22,11 +25,18 @@ export const createJournal = async ({
 }: Journal) => {
   const client: Client = new Client(await getAragonContext());
 
+  // const config = await writeContract({
+  //   address: '',
+  //   abi: ,
+  //   functionName: '_mint',
+  //   args: [69],
+  // })
+
   const tokenVotingPluginInstallParams: TokenVotingPluginInstall = {
     votingSettings: {
       minDuration: 60 * 60 * 24 * 2,
-      minParticipation: participationThreshold/100,
-      supportThreshold: minimumApprovalPercentage/100,
+      minParticipation: participationThreshold / 100,
+      supportThreshold: minimumApprovalPercentage / 100,
     },
     useToken: {
       tokenAddress: env.NEXT_PUBLIC_EXPERT_SHEET_TOKEN_ADDRESS,
@@ -40,7 +50,7 @@ export const createJournal = async ({
   const tokenVotingPluginInstallItem =
     TokenVotingClient.encoding.getPluginInstallItem(
       tokenVotingPluginInstallParams,
-        SupportedNetwork.MUMBAI
+      SupportedNetwork.MUMBAI
     );
 
   const daoMetadata: DaoMetadata = {
@@ -75,6 +85,12 @@ export const createJournal = async ({
             daoAddress: step.address,
             pluginAddresses: step.pluginAddresses,
           };
+          // const params: GrantPermissionParams = {
+          //   who: address as `0x${string}`,
+          //   where: step.address,
+          //   permission: Permissions.EXECUTE_PERMISSION,
+          // };
+
           console.log("🚀 Journal Deployed: ", result);
           return result;
       }
