@@ -8,8 +8,8 @@ contract AcknowlegementPlugin is Plugin {
         IDAO.Action[] memory actions = new IDAO.Action[](1);
         actions[0] = IDAO.Action({
             to: address(topicContract),
-            value: 0
-            // data: abi.encodeCall(IDAO.)
+            value: 0,
+            data: abi.encodeCall()
         });
     }
 }
