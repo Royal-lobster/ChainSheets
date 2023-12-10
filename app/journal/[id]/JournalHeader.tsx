@@ -6,28 +6,28 @@ import JoinJournal from "./JoinJournal";
 
 interface JournalHeaderProps {
   id: string;
-  journalImage?: string;
-  journalTitle?: string;
-  topic?: string;
-  description?: string;
-  memberButtonText?: string;
-  paperButtonText?: string;
-  memberCount?: number;
-  paperCount?: number;
-  holderCount?: number;
+  journalImage: string;
+  journalTitle: string;
+  topic: string;
+  description: string;
+  memberButtonText: string;
+  paperButtonText: string;
+  memberCount: number;
+  paperCount: number;
+  holderCount: number;
 }
 
 const JOURNAL_IMAGE_SIZE = 180;
 
 const JournalHeader = ({
   id,
-  journalImage = "https://source.unsplash.com/random/500x500",
-  journalTitle = "AI and Machine Learning",
-  topic = "Artificial Intelligence",
-  description = "All papers on AI and Machine learning Research",
-  memberCount = 1000,
-  paperCount = 120,
-  holderCount = 1400,
+  journalImage,
+  journalTitle,
+  topic,
+  description,
+  memberCount,
+  paperCount,
+  holderCount,
 }: JournalHeaderProps) => {
   return (
     <div className="flex flex-col md:flex-row justify-center sm:justify-between items-center">
