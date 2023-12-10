@@ -13,7 +13,7 @@ model Journal {
     title       String
     description String
     topic       String
-    daoAddress  String
+    daoAddress  String   @unique
     ipfsImage   String
     paper       Paper[]
     member      member[]
@@ -35,7 +35,7 @@ model Paper {
 
 model member {
     id        Int      @id @default(autoincrement())
-    address   String
+    address   String   @unique
     journalId Int
     Journal   Journal? @relation(fields: [journalId], references: [id])
     review    review[]
@@ -44,14 +44,14 @@ model member {
 model publisher {
     id      Int      @id @default(autoincrement())
     paperId Int
-    address String
+    address String   @unique
     Paper   Paper?   @relation(fields: [paperId], references: [id])
     review  review[]
 }
 
 model holder {
     id      Int    @id @default(autoincrement())
-    address String
+    address String @unique
     paperId Int
     Paper   Paper? @relation(fields: [paperId], references: [id])
 }
