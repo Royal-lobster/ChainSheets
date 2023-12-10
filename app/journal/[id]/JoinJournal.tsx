@@ -17,14 +17,11 @@ const JoinJournal = ({ name, topic }: JoinJournalProps) => {
           <span>Become Member</span>
         </button>
       }
+      description="Be part of the review board and vote on paper submissions"
       title={`Join ${name}`}
     >
-      <div className="flex flex-col space-y-4">
-        <p className="text-gray-500">
-          You will be automatically eligible to vote and review on paper
-          submissions if you have {topic} token.
-        </p>
-      </div>
+      You will be automatically eligible to vote and review on paper submissions
+      if you have {topic} token.
     </Modal>
   );
 };
