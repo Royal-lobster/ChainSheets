@@ -3,9 +3,9 @@ import Image from "next/image";
 import { IconUsers } from "@tabler/icons-react";
 
 interface PopularJournalCardProps {
-  title?: string;
-  description?: string;
-  members?: number;
+  title: string;
+  description: string;
+  members: number;
 }
 
 const JOURNAL_IMAGE_SIZE = 100;
