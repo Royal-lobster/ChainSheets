@@ -1,11 +1,13 @@
 import React from "react";
 import PaperHeader from "./PaperHeader";
+import PaperReviews from "./PaperReviews";
 
 const PaperPage = () => {
   return (
-    <div>
+    <main className="flex flex-col gap-10">
       <PaperHeader />
-    </div>
+      <PaperReviews />
+    </main>
   );
 };
 
