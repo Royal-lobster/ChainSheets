@@ -1,13 +1,10 @@
-import { ImageResponse } from "next/og";
-import { NextRequest, NextResponse } from "next/server";
-import axios from "axios";
-import { env } from "@/app/env.mjs";
 import {
   getComplementaryColor,
   getRandomPaleColor,
 } from "@/app/assets/lib/helpers/randomColors";
 import { uploadImageToLighthouseStorage } from "@/app/assets/lib/integrations/lighthouse.storage";
-export const runtime = "edge";
+import { ImageResponse } from "next/og";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   const urlSearchParams = new URLSearchParams(req.nextUrl.searchParams);
@@ -24,15 +21,15 @@ export async function GET(req: NextRequest) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          fontFamily: "Helvetica",
           alignItems: "center",
+          textAlign: "center",
           backgroundColor,
           width: 1200,
           height: 630,
         }}
       >
         <h1
-          style={{ fontSize: "84px", fontWeight: "bolder", color: titleColor }}
+          style={{ fontSize: "64px", fontWeight: "bolder", color: titleColor }}
         >
           {title}
         </h1>
@@ -47,7 +44,9 @@ export async function GET(req: NextRequest) {
     }
   );
 
-  const ipfs = await uploadImageToLighthouseStorage(await generatedImage.blob());
+  const ipfs = await uploadImageToLighthouseStorage(
+    await generatedImage.blob()
+  );
 
   return NextResponse.json({ ipfs });
 }

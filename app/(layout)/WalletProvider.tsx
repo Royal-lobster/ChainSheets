@@ -3,20 +3,18 @@
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 import { WagmiConfig, createConfig } from "wagmi";
 import { env } from "@/app/env.mjs";
+import { polygonMumbai } from "viem/chains";
 
 const config = createConfig(
   getDefaultConfig({
-    // Required API Keys
-    alchemyId: process.env.ALCHEMY_ID, // or infuraId
+    infuraId: env.NEXT_PUBLIC_INFURA_ID,
     walletConnectProjectId: env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID,
-
-    // Required
-    appName: "Your App Name",
-
-    // Optional
-    appDescription: "Your App Description",
-    appUrl: "https://family.co", // your app's url
-    appIcon: "https://family.co/logo.png", // your app's icon, no bigger than 1024x1024px (max. 1MB)
+    appName: "ChainSheet",
+    appDescription: "A decentralized academic publishing framework",
+    appUrl: "chainsheets.vercel.app",
+    appIcon:
+      "https://bafkreidu4sosagd245txe37o273eh6lz5dyxeud5jpgges7ljrohzjbeq4.ipfs.nftstorage.link",
+    chains: [polygonMumbai],
   })
 );
 

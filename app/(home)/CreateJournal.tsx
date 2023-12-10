@@ -1,31 +1,34 @@
 "use client";
-import React from "react";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 
-import { z } from "zod";
-import FieldWrapper from "../assets/components/FieldWrapper";
-import JournalAvatarUpload from "./JournalAvatarUpload";
-import Section from "../(layout)/Section";
-import { IconBuildingArch, IconRocket } from "@tabler/icons-react";
-import { button } from "../assets/lib/helpers/variants";
 import { topics } from "@/app/assets/data/topics";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { IconBuildingArch, IconLoader, IconRocket } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import Section from "../(layout)/Section";
+import FieldWrapper from "../assets/components/FieldWrapper";
 import { createJournal } from "../assets/lib/functions/createJournal";
+import { button } from "../assets/lib/helpers/variants";
+import JournalAvatarUpload from "./JournalAvatarUpload";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
 const DEFAULT_MINIMUM_APPROVAL_PERCENTAGE = 30;
 
 const journalSchema = z.object({
-  journalName: z.string(),
-  journalAvatar: z.string(),
+  name: z.string(),
+  image: z.string(),
   description: z.string(),
   topic: z.string(),
   participationThreshold: z.number(),
   minimumApprovalPercentage: z.number(),
 });
-type Journal = z.infer<typeof journalSchema>;
+export type Journal = z.infer<typeof journalSchema>;
 
 const CreateJournal = () => {
+  const router = useRouter();
+  const [isPending, setIsPending] = useState(false);
   const {
     register,
     handleSubmit,
@@ -33,8 +36,8 @@ const CreateJournal = () => {
   } = useForm({
     resolver: zodResolver(journalSchema),
     defaultValues: {
-      journalName: "",
-      journalAvatar: "",
+      name: "",
+      image: "",
       description: "",
       topic: topics[0],
       participationThreshold: DEFAULT_PARTICIPATION_THRESHOLD,
@@ -42,16 +45,14 @@ const CreateJournal = () => {
     },
   });
 
-  const onSubmit = (data: Journal) => {
-    console.log(data); // You can handle the form submission here
-    createJournal({
-      description: data.description,
-      image: data.journalAvatar,
-      name: data.journalName,
-      topic: data.topic,
-      participationThreshold: data.participationThreshold,
-      minimumApprovalPercentage: data.minimumApprovalPercentage,
-    });
+  const onSubmit = async (data: Journal) => {
+    try {
+      setIsPending(true);
+      const { daoAddress } = (await createJournal(data)) || {};
+      router.push(`/journal/${daoAddress}`);
+    } finally {
+      setIsPending(false);
+    }
   };
 
   return (
@@ -67,7 +68,7 @@ const CreateJournal = () => {
           <div className="flex flex-col md:flex-row justify-between gap-8">
             <FieldWrapper
               label="Journal Avatar"
-              name="journalAvatar"
+              name="image"
               register={register}
               errors={errors}
               isOnDark
@@ -77,7 +78,7 @@ const CreateJournal = () => {
             <div className="flex-grow space-y-4">
               <FieldWrapper
                 label="Journal Name"
-                name="journalName"
+                name="name"
                 register={register}
                 errors={errors}
                 placeholder="Name of Journal"
@@ -100,11 +101,11 @@ const CreateJournal = () => {
               </FieldWrapper>
 
               <FieldWrapper
-                label="Topics"
-                name="topics"
+                label="Topic"
+                name="topic"
                 register={register}
                 errors={errors}
-                placeholder="Enter topics"
+                placeholder="Enter topic for your journal"
                 isOnDark
               >
                 <select
@@ -150,7 +151,13 @@ const CreateJournal = () => {
               class: "px-10 mt-10 mx-auto",
             })}
           >
-            <IconRocket /> <span>Launch</span>
+            {isPending ? (
+              <IconLoader className="animate-spin" />
+            ) : (
+              <IconRocket />
+            )}
+
+            <span>{isPending ? "Creating..." : "Launch"}</span>
           </button>
         </form>
       </Section>
