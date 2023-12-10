@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-type CreateReviewArgs = {
+type SaveToReview = {
   memberId: number;
   publisherId: number;
   reviewTitle: string;
@@ -10,7 +10,7 @@ type CreateReviewArgs = {
   reviewStatus: string;
 };
 
-export async function createReview(args: CreateReviewArgs): Promise<void> {
+export async function saveToReview(args: SaveToReview) {
   try {
     await prisma.review.create({
       data: {
