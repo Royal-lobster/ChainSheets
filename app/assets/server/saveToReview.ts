@@ -3,8 +3,8 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 type CreateReviewArgs = {
-  memberId: number;
-  publisherId: number;
+  memberAddress: string;
+  publisherAddress: string;
   reviewTitle: string;
   reviewDetails: string;
   reviewStatus: string;
@@ -12,10 +12,24 @@ type CreateReviewArgs = {
 
 export async function createReview(args: CreateReviewArgs): Promise<void> {
   try {
+    const member = await prisma.member.findUnique({
+      where: { address: args.memberAddress },
+    });
+    if (!member) {
+      throw new Error('Member not found');
+    }
+
+    const publisher = await prisma.publisher.findUnique({
+      where: { address: args.publisherAddress },
+    });
+    if (!publisher) {
+      throw new Error('Publisher not found');
+    }
+
     await prisma.review.create({
       data: {
-        memberId: args.memberId,
-        publisherId: args.publisherId,
+        memberId: member.id,
+        publisherId: publisher.id,
         reviewTitle: args.reviewTitle,
         reviewDetails: args.reviewDetails,
         reviewStatus: args.reviewStatus,

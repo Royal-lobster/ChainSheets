@@ -11,7 +11,7 @@ type CreatePaperArgs = {
     ipfsImage: string;
 };
 
-export async function createJournal(args: CreatePaperArgs): Promise<void> {
+export async function createPaper(args: CreatePaperArgs): Promise<void> {
   try {
     await prisma.paper.create({
       data: {
