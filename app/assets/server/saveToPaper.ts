@@ -7,7 +7,6 @@ type CreatePaperArgs = {
     title: string;
     description: string;
     filehash: string;
-    ipfsImage: string;
 };
 
 export async function createPaper(args: CreatePaperArgs): Promise<void> {
@@ -18,7 +17,6 @@ export async function createPaper(args: CreatePaperArgs): Promise<void> {
         title: args.title,
         description: args.description,
         filehash: args.filehash,
-        ipfsImage: args.ipfsImage,
       },
     });
     console.log('Paper proposal created successfully');

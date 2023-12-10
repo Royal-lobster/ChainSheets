@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "bun run ./app/assets/scripts/seed.ts"
   },
   "dependencies": {
     "@aragon/sdk-client": "^1.20.3",
