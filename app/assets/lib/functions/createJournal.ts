@@ -9,15 +9,8 @@ import {
 import { env } from "@/app/env.mjs";
 import { SupportedNetwork } from "@aragon/sdk-client-common";
 import { getAragonContext } from "../integrations/aragon";
+import { Journal } from "@/app/(home)/CreateJournal";
 
-type CreateJournalArgs = {
-  name: string;
-  description: string;
-  image: string;
-  topic: string;
-  participationThreshold: number;
-  minimumApprovalPercentage: number;
-};
 
 export const createJournal = async ({
   name,
@@ -26,7 +19,7 @@ export const createJournal = async ({
   topic,
   participationThreshold,
   minimumApprovalPercentage,
-}: CreateJournalArgs) => {
+}: Journal) => {
   const client: Client = new Client(await getAragonContext());
 
   const tokenVotingPluginInstallParams: TokenVotingPluginInstall = {

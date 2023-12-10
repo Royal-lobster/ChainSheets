@@ -2,6 +2,7 @@ import { button, chip } from "@/app/assets/lib/helpers/variants";
 import { IconUsers } from "@tabler/icons-react";
 import Image from "next/image";
 import CreatePaperSubmission from "./CreatePaperSubmission";
+import JoinJournal from "./JoinJournal";
 
 interface JournalHeaderProps {
   journalImage?: string;
@@ -48,10 +49,7 @@ const JournalHeader = ({
           </div>
           <p className="text-neutral-500 mt-1">{description}</p>
           <div className="flex justify-center mt-4 gap-4 flex-wrap">
-            <button className={button()}>
-              <IconUsers />
-              <span>Become Member</span>
-            </button>
+            <JoinJournal topic={topic} name={journalTitle} />
             <CreatePaperSubmission />
           </div>
         </div>
