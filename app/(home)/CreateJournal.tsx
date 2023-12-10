@@ -12,14 +12,17 @@ import FieldWrapper from "../assets/components/FieldWrapper";
 import { createJournal } from "../assets/lib/functions/createJournal";
 import { button } from "../assets/lib/helpers/variants";
 import JournalAvatarUpload from "./JournalAvatarUpload";
+import { useAccount } from "wagmi";
+import { ConnectKitButton } from "connectkit";
+import { createJournalOnDB } from "../assets/server/createJournalOnDB";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
 const DEFAULT_MINIMUM_APPROVAL_PERCENTAGE = 30;
 
 const journalSchema = z.object({
-  name: z.string(),
+  name: z.string().min(3).max(120),
   image: z.string(),
-  description: z.string(),
+  description: z.string().min(10).max(240),
   topic: z.string(),
   participationThreshold: z.number(),
   minimumApprovalPercentage: z.number(),
@@ -29,6 +32,7 @@ export type Journal = z.infer<typeof journalSchema>;
 const CreateJournal = () => {
   const router = useRouter();
   const [isPending, setIsPending] = useState(false);
+  const { isConnected } = useAccount();
   const {
     register,
     handleSubmit,
@@ -49,6 +53,14 @@ const CreateJournal = () => {
     try {
       setIsPending(true);
       const { daoAddress } = (await createJournal(data)) || {};
+      if (!daoAddress) throw new Error("DAO address not found");
+      createJournalOnDB({
+        daoAddress,
+        title: data.name,
+        description: data.description,
+        topic: data.topic,
+        ipfsImage: data.image,
+      });
       router.push(`/journal/${daoAddress}`);
     } finally {
       setIsPending(false);
@@ -58,7 +70,7 @@ const CreateJournal = () => {
   return (
     <div
       id="create-journal"
-      className="-mx-4 sm:mx-0 xl:-mx-16 px-8 xl:px-24 py-24 bg-neutral-900 text-white sm:rounded-lg scroll-mt-14"
+      className="-mx-4 sm:mx-0 xl:-mx-16 px-8 xl:px-24 py-24 text-white sm:rounded-lg scroll-mt-14 bg-neutral-900"
     >
       <Section
         title="Establish your own decentralized journal"
@@ -144,22 +156,28 @@ const CreateJournal = () => {
               />
             </div>
           </div>
-          <button
-            type="submit"
-            className={button({
-              type: "lightOutline",
-              class: "px-10 mt-10 mx-auto",
-            })}
-          >
-            {isPending ? (
-              <IconLoader className="animate-spin" />
-            ) : (
-              <IconRocket />
-            )}
+          {isConnected && (
+            <button
+              type="submit"
+              className={button({
+                class: "px-10 mt-10 mx-auto bg-neutral-700 rounded-xl",
+              })}
+            >
+              {isPending ? (
+                <IconLoader className="animate-spin" />
+              ) : (
+                <IconRocket />
+              )}
 
-            <span>{isPending ? "Creating..." : "Launch"}</span>
-          </button>
+              <span>{isPending ? "Creating..." : "Launch"}</span>
+            </button>
+          )}
         </form>
+        {!isConnected && (
+          <div className="grid place-items-center mt-4">
+            <ConnectKitButton />
+          </div>
+        )}
       </Section>
     </div>
   );

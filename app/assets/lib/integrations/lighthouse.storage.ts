@@ -12,3 +12,13 @@ export async function uploadImageToLighthouseStorage(blob: Blob) {
   );
   return output.data.Hash;
 }
+
+export async function uploadPdfToLighthouseStorage(blob: Blob) {
+  const buffer = Buffer.from(await blob.arrayBuffer());
+  writeFileSync('pdf.pdf', buffer);
+  const output = await lighthouse.upload('pdf.pdf', env.LIGHTHOUSE_STORAGE_API_KEY);
+  console.log(
+    "🎉 Uploaded https://gateway.lighthouse.storage/ipfs/" + output.data.Hash
+  );
+  return output.data.Hash;
+}

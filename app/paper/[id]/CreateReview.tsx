@@ -2,10 +2,12 @@
 import FieldWrapper from "@/app/assets/components/FieldWrapper";
 import Modal from "@/app/assets/components/Modal";
 import { button } from "@/app/assets/lib/helpers/variants";
+import { createReviewOnDB } from "@/app/assets/server/createReviewOnDB";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { IconFileCheck } from "@tabler/icons-react";
+import { IconFileCheck, IconLoader } from "@tabler/icons-react";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useAccount } from "wagmi";
 import { z } from "zod";
 
 const reviewSchema = z.object({
@@ -14,7 +16,14 @@ const reviewSchema = z.object({
 });
 type Review = z.infer<typeof reviewSchema>;
 
-const CreateReview = () => {
+type CreateReviewProps = {
+  createReviewOnDB: typeof createReviewOnDB;
+  author: string;
+};
+
+const CreateReview = ({ createReviewOnDB, author }: CreateReviewProps) => {
+  const [loading, setLoading] = React.useState(false);
+  const { address } = useAccount();
   const {
     handleSubmit,
     register,
@@ -23,8 +32,16 @@ const CreateReview = () => {
     resolver: zodResolver(reviewSchema),
   });
 
-  const onSubmit = (data: Review) => {
-    console.log(data); // You can handle the form submission here
+  const onSubmit = async (data: Review) => {
+    setLoading(true);
+    await createReviewOnDB({
+      memberAddress: author,
+      publisherAddress: author,
+      reviewDetails: data.description,
+      reviewStatus: "pending",
+      reviewTitle: data.title,
+    });
+    setLoading(false);
   };
 
   return (
@@ -32,8 +49,20 @@ const CreateReview = () => {
       title="Create Review"
       description="Submit a review to this paper. Make sure your review must be the subject of this paper. and you are up to date with the latest revision."
       trigger={
-        <button className={button({ type: "outline" })}>
-          <IconFileCheck /> Submit Review
+        <button
+          className={button({ type: "outline" })}
+          disabled={loading}
+          onClick={handleSubmit(onSubmit)}
+        >
+          {loading ? (
+            <>
+              <IconLoader className="animate-spin mr-2" /> Submitting...
+            </>
+          ) : (
+            <>
+              <IconFileCheck /> Submit Review
+            </>
+          )}
         </button>
       }
     >

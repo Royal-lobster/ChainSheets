@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-type CreateReviewArgs = {
+type createReviewArgs = {
   memberAddress: string;
   publisherAddress: string;
   reviewTitle: string;
@@ -10,7 +10,7 @@ type CreateReviewArgs = {
   reviewStatus: string;
 };
 
-export async function createReview(args: CreateReviewArgs): Promise<void> {
+export async function createReviewOnDB(args: createReviewArgs) {
   try {
     const member = await prisma.member.findUnique({
       where: { address: args.memberAddress },
