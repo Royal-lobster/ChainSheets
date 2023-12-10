@@ -3,6 +3,7 @@ import { button, chip } from "@/app/assets/lib/helpers/variants";
 import { IconFile, IconUser } from "@tabler/icons-react";
 import { z } from "zod";
 import CreateReview from "./CreateReview";
+import { saveToReview } from "@/app/assets/server/saveToReview";
 
 export const paperStatus = z.enum(["draft", "accepted", "rejected"]);
 export type PaperStatus = z.infer<typeof paperStatus>;
@@ -50,7 +51,7 @@ const PaperHeader = ({
             <IconFile />
             View {paperStatus.enum.draft ? "Draft" : "Paper"}
           </button>
-          <CreateReview />
+          <CreateReview author={author} saveToReview={saveToReview} />
         </div>
       </div>
 
