@@ -92,4 +92,9 @@ export const createJournal = async ({
       console.error(err);
     }
   }
+  const params: GrantPermissionParams = {
+    // who: , // USER
+    // where: "", // dao Address
+    permission: Permissions.EXECUTE_PERMISSION,
+  };
 };
