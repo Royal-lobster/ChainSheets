@@ -25,8 +25,8 @@ const PopularJournals = async () => {
 
   return (
     <Section title="Popular Journals" icon={<IconBook size={32} />}>
+      {popularJournals.length === 0 && <Empty />}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {popularJournals.length === 0 && <Empty />}
         {popularJournals.map((journal) => (
           <JournalCard
             title={journal.title}

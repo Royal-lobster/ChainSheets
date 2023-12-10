@@ -28,8 +28,8 @@ const PopularPapers = async () => {
   });
   return (
     <Section title="Popular Papers" icon={<IconFiles size={32} />}>
+      {popularPapers.length === 0 && <Empty />}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {popularPapers.length === 0 && <Empty />}
         {popularPapers.map((paper) => (
           <PapersCard
             category={paper.Journal?.topic || "Uncategorized"}
