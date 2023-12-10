@@ -26,7 +26,6 @@ model Paper {
     description String
     filehash    String
     reviewId    Int?
-    ipfsImage   String
     Journal     Journal?    @relation(fields: [journalId], references: [id])
     review      review?     @relation(fields: [reviewId], references: [id])
     holder      holder[]

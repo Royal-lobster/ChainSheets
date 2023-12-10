@@ -10,7 +10,7 @@ type CreateJournalArgs = {
   ipfsImage: string;
 };
 
-export async function createJournal(args: CreateJournalArgs): Promise<void> {
+export async function createJournalOnDB(args: CreateJournalArgs): Promise<void> {
   try {
     await prisma.journal.create({
       data: {

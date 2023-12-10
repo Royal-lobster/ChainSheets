@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import FieldWrapper from "@/app/assets/components/FieldWrapper";
+import { createPaperOnDB } from "@/app/assets/server/createPaperOnDB";
+import { uploadPdfToLighthouseStorage } from "@/app/assets/lib/integrations/lighthouse.storage";
+import { usePathname } from "next/navigation";
 
 const paperSubmissionSchema = z.object({
   name: z.string().min(1),
@@ -22,7 +25,7 @@ const paperSubmissionSchema = z.object({
 
 type PaperSubmission = z.infer<typeof paperSubmissionSchema>;
 
-const CreatePaperSubmission = () => {
+const CreatePaperSubmission = ({ id }: { id: string }) => {
   const {
     handleSubmit,
     register,
@@ -30,9 +33,17 @@ const CreatePaperSubmission = () => {
   } = useForm<PaperSubmission>({
     resolver: zodResolver(paperSubmissionSchema),
   });
+  const {} = usePathname();
 
-  const onSubmit = (data: PaperSubmission) => {
-    console.log(data); // You can handle the form submission here
+  const onSubmit = async (data: PaperSubmission) => {
+    const hash = await uploadPdfToLighthouseStorage(data.pdf[0]);
+    createPaperOnDB({
+      description: data.description,
+      title: data.name,
+      ipfsImage: "",
+      filehash: hash,
+      journalId: id,
+    });
   };
 
   return (

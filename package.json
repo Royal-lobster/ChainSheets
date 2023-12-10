@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "bun run ./app/assets/scripts/seed.ts"
   },
   "dependencies": {
     "@aragon/osx": "^1.3.0-rc0.4",

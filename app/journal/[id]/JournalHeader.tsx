@@ -5,6 +5,7 @@ import CreatePaperSubmission from "./CreatePaperSubmission";
 import JoinJournal from "./JoinJournal";
 
 interface JournalHeaderProps {
+  id: string;
   journalImage?: string;
   journalTitle?: string;
   topic?: string;
@@ -19,6 +20,7 @@ interface JournalHeaderProps {
 const JOURNAL_IMAGE_SIZE = 180;
 
 const JournalHeader = ({
+  id,
   journalImage = "https://source.unsplash.com/random/500x500",
   journalTitle = "AI and Machine Learning",
   topic = "Artificial Intelligence",
@@ -50,7 +52,7 @@ const JournalHeader = ({
           <p className="text-neutral-500 mt-1">{description}</p>
           <div className="flex justify-center mt-4 gap-4 flex-wrap">
             <JoinJournal topic={topic} name={journalTitle} />
-            <CreatePaperSubmission />
+            <CreatePaperSubmission id={id} />
           </div>
         </div>
       </div>

@@ -1,7 +1,14 @@
 const { PrismaClient } = require('@prisma/client');
+import { randomBytes } from 'crypto';
 const prisma = new PrismaClient();
 
-const faker = require('faker');
+function generateEthereumAddress() {
+    return '0x' + randomBytes(20).toString('hex');
+}
+
+function getRandomElement<T>(arr: T[]): T {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
 
 function generateJournalTitle() {
     const fields = ['Computational Neuroscience', 'Evolutionary Biology', 'Quantum Mechanics', 'Environmental Science', 'Cognitive Psychology'];
@@ -26,70 +33,121 @@ function generateAcademicDescription() {
     return `${beginnings[Math.floor(Math.random() * beginnings.length)]} ${middles[Math.floor(Math.random() * middles.length)]} ${ends[Math.floor(Math.random() * ends.length)]}`;
 }
 
+function generateJournalDescription() {
+    const descriptions = [
+        'A leading publication in the field of ',
+        'An authoritative source of research in ',
+        'A cutting-edge journal dedicated to ',
+        'A comprehensive collection of research and reviews in ',
+        'An interdisciplinary platform focusing on '
+    ];
+    const fields = ['life sciences', 'physical sciences', 'social sciences', 'medical research', 'engineering and technology'];
+    
+    return `${descriptions[Math.floor(Math.random() * descriptions.length)]}${fields[Math.floor(Math.random() * fields.length)]}, providing insights from top experts in the field.`;
+}
+
+function generateJournalTopic() {
+    const topics = [
+        'Artificial Intelligence',
+        'Climate Change',
+        'Genetic Engineering',
+        'Renewable Energy',
+        'Public Health',
+        'Space Exploration',
+        'Quantum Computing',
+        'Sustainable Development',
+        'Cybersecurity',
+        'Nanotechnology'
+    ];
+
+    return topics[Math.floor(Math.random() * topics.length)];
+}
+
+
+function randomElement<T>(array: T[]): T | undefined {
+    if (array.length === 0) {
+        return undefined;
+    }
+    return array[Math.floor(Math.random() * array.length)];
+}
+    
+
 async function main() {
-    for (let i = 1; i <= 5; i++) {
-        await prisma.journal.create({
+    const journals = [];
+    for (let i = 0; i < 5; i++) {
+        const journal = await prisma.journal.create({
             data: {
+                id: i,
                 title: generateJournalTitle(),
+                description: generateJournalDescription(),
+                topic: generateJournalTopic(),
+                daoAddress: generateEthereumAddress(),
+                ipfsImage: generateEthereumAddress(),
+            },
+        });
+        journals.push(journal);
+    }
+
+    const members = [];
+    for (let i = 0; i < 100; i++) {
+        const member = await prisma.member.create({
+            data: {
+                id: i,
+                address: generateEthereumAddress(),
+                journalId: randomElement(journals).id,
+            },
+        });
+        members.push(member);
+    }
+
+    const publishers = [];
+    const papers = [];
+    for (let i = 0; i < 30; i++) {
+        const paper = await prisma.paper.create({
+            data: {
+                journalId: randomElement(journals).id,
+                title: generateAcademicTitle(),
                 description: generateAcademicDescription(),
-                topic: faker.random.word(),
-                daoAddress: faker.finance.ethereumAddress(),
-                ipfsImage: faker.random.alphaNumeric(10),
+                filehash: generateEthereumAddress(),
+                ipfsImage: generateEthereumAddress(),
+            },
+        });
+
+        const pub = await prisma.publisher.create({
+            data: {
+                paperId: paper.id,
+                address: generateEthereumAddress(),
+            },
+        });
+        publishers.push(pub);
+        papers.push(paper)
+    }
+
+    for (let i = 0; i < 40; i++) {
+        await prisma.holder.create({
+            data: {
+                address: generateEthereumAddress(),
+                paperId: randomElement(papers).id,
             },
         });
     }
 
-    const journals = await prisma.journal.findMany();
-    for (const journal of journals) {
-        for (let i = 1; i <= 3; i++) {
-            const paper = await prisma.paper.create({
-                data: {
-                    journalId: journal.id,
-                    title: generateAcademicTitle(),
-                    description: generateAcademicDescription(),
-                    filehash: faker.random.alphaNumeric(16),
-                    ipfsImage: faker.random.alphaNumeric(10),
-                },
-            });
-
-            const member = await prisma.member.create({
-                data: {
-                    address: faker.finance.ethereumAddress(),
-                    journalId: journal.id,
-                },
-            });
-
-            const publisher = await prisma.publisher.create({
-                data: {
-                    paperId: paper.id,
-                    address: faker.finance.ethereumAddress(),
-                },
-            });
-
-            const holder = await prisma.holder.create({
-                data: {
-                    address: faker.finance.ethereumAddress(),
-                    paperId: paper.id,
-                },
-            });
-
-            await prisma.review.create({
-                data: {
-                    memberId: member.id,
-                    publisherId: publisher.id,
-                    reviewTitle: `Review for ${paper.title}`,
-                    reviewDetails: faker.lorem.paragraph(),
-                    reviewStatus: faker.random.arrayElement(['Published', 'Rejected', 'Review Pending', 'Changes Required']),
-                },
-            });
-        }
+    for (let i = 0; i < 20; i++) {
+        await prisma.review.create({
+            data :{
+                memberId: randomElement(members).id,
+                publisherId: randomElement(publishers).id,
+                reviewTitle: `Review for ${randomElement(papers).title}`,
+                reviewDetails: generateEthereumAddress(),
+                reviewStatus: getRandomElement(['Published', 'Rejected', 'Review Pending', 'Changes Required']),
+            }
+        });
     }
 }
 
 main()
     .catch((e) => {
-        console.error(e);
-        process.exit(1);
+        console.log(e)
     })
     .finally(async () => {
         await prisma.$disconnect();

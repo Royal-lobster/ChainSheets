@@ -14,6 +14,7 @@ import { button } from "../assets/lib/helpers/variants";
 import JournalAvatarUpload from "./JournalAvatarUpload";
 import { useAccount } from "wagmi";
 import { ConnectKitButton } from "connectkit";
+import { createJournalOnDB } from "../assets/server/createJournalOnDB";
 
 const DEFAULT_PARTICIPATION_THRESHOLD = 50;
 const DEFAULT_MINIMUM_APPROVAL_PERCENTAGE = 30;
@@ -52,6 +53,14 @@ const CreateJournal = () => {
     try {
       setIsPending(true);
       const { daoAddress } = (await createJournal(data)) || {};
+      if (!daoAddress) throw new Error("DAO address not found");
+      createJournalOnDB({
+        daoAddress,
+        title: data.name,
+        description: data.description,
+        topic: data.topic,
+        ipfsImage: data.image,
+      });
       router.push(`/journal/${daoAddress}`);
     } finally {
       setIsPending(false);
