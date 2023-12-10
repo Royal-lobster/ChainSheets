@@ -3,17 +3,17 @@ import { IconCalendar, IconUser } from "@tabler/icons-react";
 import React from "react";
 
 type ReviewCardProps = {
-  title: string;
-  description: string;
-  createdAt: string;
-  author: string;
+  title?: string;
+  description?: string;
+  createdAt?: string;
+  author?: string;
 };
 
 const ReviewCard = ({
-  title,
-  description,
-  createdAt,
-  author,
+  title = "lorem ipsum dolor sit amet",
+  description = "lorem ipsum dolor sit amet, consectetur adipiscing elit. sed euismod, diam quis aliquam ultricies, lorem ipsum dolor sit amet, consectetur adipiscing elit. sed euismod, diam quis aliquam ultricies",
+  createdAt = "2021-08-01",
+  author = "0x1234567890123456789012345678901234567890",
 }: ReviewCardProps) => {
   return (
     <div className="flex flex-col gap-2">
